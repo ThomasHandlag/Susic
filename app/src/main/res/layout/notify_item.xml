@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:padding="4dp"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/user_thumb"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/img_lb"
+            android:src="@drawable/face22"
+            app:shapeAppearanceOverlay="@style/RoundButton"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+
+            android:layout_width="238dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.073"
+            app:layout_constraintStart_toEndOf="@+id/user_thumb"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.473">
+
+            <TextView
+                android:id="@+id/notify_text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                tools:text="Notify Title" />
+
+            <TextView
+                android:id="@+id/notify_text_caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Notify caption" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/notify_text_date"
+            android:layout_width="82dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Notify date pop up" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

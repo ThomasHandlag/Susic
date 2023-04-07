@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_page"
+        android:enabled="true"
+        android:icon="@drawable/ic_round_home_24"
+        android:title="@string/home_lb" />
+    <item
+        android:id="@+id/lib_page"
+        android:enabled="true"
+        android:icon="@drawable/ic_round_library_music_24"
+        android:title="@string/library_lb" />
+    <item
+        android:id="@+id/notify_page"
+        android:enabled="true"
+        android:icon="@drawable/ic_round_notifications_24"
+        android:title="@string/notify_lb" />
+    <item
+        android:id="@+id/artist_page"
+        android:enabled="true"
+        android:icon="@drawable/ic_round_subscriptions_24"
+        android:title="@string/artist_lb" />
+    <item
+        android:id="@+id/settings_page"
+        android:enabled="true"
+        android:icon="@drawable/ic_round_settings_24"
+        android:title="@string/setting_lb" />
+
+</menu>

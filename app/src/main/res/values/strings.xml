@@ -1,0 +1,73 @@
+<resources>
+    <string name="app_name">Susic</string>
+    <string name="title_activity_service">ServiceActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password" translatable="true">Password</string>
+    <string name="action_sign_in" translatable="true">Sign in</string>
+    <string name="action_sign_in_short" translatable="true">Sign in</string>
+    <string name="action_sign_up" translatable="true">Sign up</string>
+    <string name="welcome" translatable="true">"Welcome !"</string>
+    <string name="invalid_username" translatable="true">Not a valid username</string>
+    <string name="invalid_password" translatable="true">Password must be >5 characters</string>
+    <string name="login_failed" translatable="true">"Login failed"</string>
+    <!-- Preference Titles -->
+    <string name="messages_header" translatable="true">Messages</string>
+    <string name="sync_header" translatable="true">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title" translatable="true">Your signature</string>
+    <string name="reply_title" translatable="true">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title" translatable="true">Sync email periodically</string>
+    <string name="attachment_title" translatable="true">Download incoming attachments</string>
+    <string name="attachment_summary_on" translatable="true">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off" translatable="true">Only download attachments when manually requested</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="true">Hello blank fragment</string>
+
+    <string name="home_lb" translatable="true">Home</string>
+    <string name="notify_lb" translatable="true">Notify</string>
+    <string name="artist_lb" translatable="true">Artist</string>
+    <string name="setting_lb" translatable="true">Setting</string>
+    <string name="library_lb" translatable="true">Library</string>
+
+    <string name="mail_prefix">/@gmail.com</string>
+    <string name="server_client_id">243887629767-8jr4tkvr94gurg5sc71irve5d5cregl4.apps.googleusercontent.com</string>
+    <string name="or_lb" translatable="true">or</string>
+
+    <string name="comm_lb" translatable="true">Comments</string>
+
+    <string name="img_lb">Image</string>
+    <string name="thumb_text">%s</string>
+
+    <string name="theme_lb">Theme</string>
+    <string name="name_lb">Name</string>
+    <string name="nick_name_lb">Nick name</string>
+    <string name="role_lb">Role</string>
+    <string name="role_title">%s</string>
+
+    <string name="light_lb">Light</string>
+    <string name="dark_lb">Dark</string>
+    <string name="prg_indicator">Progress Indicator</string>
+    <string name="cho_the" translatable="true">Choose theme</string>
+
+    <string name="your_name_lb" translatable="true">Your name</string>
+    <string name="prof_lb" translatable="true">Profile</string>
+    <string name="user_name">%s</string>
+    <string name="sign_out_lb" translatable="true">Sign out</string>
+    <string name="date_post">at %s</string>
+
+    <string name="post_lb_hint">Write some thing here</string>
+
+    <string name="search_lb">Search</string>
+    <string name="page_title">Page</string>
+    <string name="upload_lb">Upload</string>
+
+    <string name="player_title">%s</string>
+    <string name="owner_title">by %s</string>
+    <string name="searchbar_hint">Search</string>
+
+    <string name="load_metadata_error">Network error</string>
+</resources>

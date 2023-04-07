@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="post"
+            type="com.example.susic.data.PostData" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/user_img"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/face22"
+                app:layout_constraintEnd_toStartOf="@+id/user_tit_layout"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/RoundButton"
+                app:userImg="@{post.userImageUrl}" />
+
+            <LinearLayout
+                android:id="@+id/user_tit_layout"
+                android:layout_width="236dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="44dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@id/action_btn"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_name"
+                    android:textSize="18sp"
+                    app:ownerName="@{post.userName}"
+                    tools:text="Thomas" />
+
+                <TextView
+                    android:id="@+id/date_post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date_post"
+                    app:datePosted="@{post.datePost}"
+                    tools:text="10/10/2023" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/action_btn"
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="@string/img_lb"
+                app:icon="@drawable/ic_round_settings_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/thumb_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="@string/thumb_text"
+            app:titleThumb="@{post.textTitle}"
+            tools:text="Thumb text" />
+
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           >
+
+           <LinearLayout
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:orientation="vertical"
+               app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+               app:layout_constraintStart_toStartOf="parent">
+
+               <VideoView
+                   android:id="@+id/visualizer"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:visibility="gone" />
+
+               <ImageView
+                   android:id="@+id/img_view_thumb"
+                   android:layout_width="match_parent"
+                   android:layout_height="160dp"
+                   android:contentDescription="@string/img_lb"
+                   app:imgThumb="@{post.imgThumb}" />
+
+               <SeekBar
+                   android:id="@+id/audio_prg"
+                   android:layout_marginTop="4dp"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:contentDescription="@string/prg_indicator" />
+           </LinearLayout>
+
+           <LinearLayout
+               android:id="@+id/linearLayout2"
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:gravity="center"
+               android:orientation="vertical"
+               app:layout_constraintEnd_toEndOf="parent">
+
+
+               <com.google.android.material.button.MaterialButton
+                   android:id="@+id/pause_btn"
+                   style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                   android:layout_width="48dp"
+                   android:layout_height="48dp"
+                   android:contentDescription="@string/img_lb"
+                   app:icon="@drawable/ic_round_play_arrow_24" />
+
+               <com.google.android.material.button.MaterialButton
+                   android:id="@+id/com.google.android.material.button.MaterialButton3"
+                   style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                   android:layout_width="48dp"
+                   android:layout_height="48dp"
+                   android:contentDescription="@string/img_lb"
+                   app:icon="@drawable/ic_round_favorite_24" />
+
+               <com.google.android.material.button.MaterialButton
+                   android:id="@+id/com_btn"
+                   style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                   android:layout_width="48dp"
+                   android:layout_height="48dp"
+                   android:contentDescription="@string/img_lb"
+                   app:icon="@drawable/ic_round_comment_24"
+                   app:layout_constraintEnd_toStartOf="@+id/com.google.android.material.button.MaterialButton"
+                   app:layout_constraintHorizontal_bias="0.5" />
+
+               <com.google.android.material.button.MaterialButton
+                   android:id="@+id/com.google.android.material.button.MaterialButton"
+                   style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                   android:layout_width="48dp"
+                   android:layout_height="48dp"
+                   android:contentDescription="@string/img_lb"
+                   app:icon="@drawable/ic_round_share_24" />
+
+           </LinearLayout>
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:dividerInsetEnd="16dp"
+            app:dividerInsetStart="16dp" />
+    </LinearLayout>
+</layout>
