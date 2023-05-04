@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: io.grpc:grpc-android:1.52.1@aar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../Program Files/.gradle/caches/transforms-3/03b6c7df20f9294da736622410ad9516/transformed/grpc-android-1.52.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../Program Files/.gradle/caches/transforms-3/03b6c7df20f9294da736622410ad9516/transformed/grpc-android-1.52.1/res" />
+      <root url="file://$PROJECT_DIR$/../../../Program Files/.gradle/caches/transforms-3/03b6c7df20f9294da736622410ad9516/transformed/grpc-android-1.52.1/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../Program Files/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-android/1.52.1/57f5316957444baf2166dfce1f3baf10241f50cd/grpc-android-1.52.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../Program Files/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-android/1.52.1/e8dc97f2f21fa6c94b32ca988e613bfd6d3ae98c/grpc-android-1.52.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
