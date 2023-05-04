@@ -1,11 +1,16 @@
 package com.example.susic.player
 
+import android.app.Notification
+import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
 import android.media.session.MediaSession
 import android.os.Binder
 import android.os.IBinder
 import android.support.v4.media.session.MediaSessionCompat
+import androidx.core.app.NotificationCompat
+import com.example.susic.MainActivity
+import com.example.susic.R
 
 private const val WAKELOCK_MILLI: Long = 25000
 
@@ -29,11 +34,9 @@ class PlayerService : Service() {
     private val mMediaSessionCallback = object : MediaSessionCompat.Callback() {
 
         override fun onPlay() {
-            mMediaPlayerHolder.resumeOrPause()
         }
 
         override fun onPause() {
-            mMediaPlayerHolder.resumeOrPause()
         }
 
         override fun onSkipToNext() {
@@ -45,7 +48,11 @@ class PlayerService : Service() {
         }
 
         override fun onStop() {
-            mMediaPlayerHolder.stopPlaybackService(stopPlayback = true, fromUser = true, fromFocus = false)
+            mMediaPlayerHolder.stopPlaybackService(
+                stopPlayback = true,
+                fromUser = true,
+                fromFocus = false
+            )
         }
 
         override fun onSeekTo(pos: Long) {
@@ -54,7 +61,6 @@ class PlayerService : Service() {
             )
         }
     }
-
 
 
     override fun onDestroy() {
@@ -77,15 +83,21 @@ class PlayerService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        isRunning = true
-
-        try {
-            intent?.action?.let { act ->
-
+        val pendingIntent: PendingIntent =
+            Intent(this, MainActivity::class.java).let { notificationIntent ->
+                PendingIntent.getActivity(this, 0, notificationIntent,
+                    PendingIntent.FLAG_IMMUTABLE)
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+
+        val notification = Notification.Builder(this, MEDIA_SESSION_SERVICE)
+            .setContentTitle(getText(R.string.notification_title))
+            .setContentText(getText(R.string.notification_message))
+            .setSmallIcon(R.drawable.ic_round_person_24)
+            .setContentIntent(pendingIntent)
+            .setTicker(getText(R.string.ticker_text))
+            .build()
+        mMediaPlayerHolder.setMusicService(this@PlayerService)
+        startForeground(0, notification)
         return startId
     }
 

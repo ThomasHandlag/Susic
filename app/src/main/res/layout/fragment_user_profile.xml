@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.profile.UserProfileFragment">
+
+    <data>
+
+        <variable
+            name="viewM"
+            type="com.example.susic.SusicViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:id="@+id/prf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/prf_bg"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintBottom_toTopOf="@id/grid_view">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:shapeAppearanceOverlay="@style/RoundButton"
+                app:userImg="@{viewM.currentViewUser.urlImg}"
+                tools:src="@drawable/face22" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_name"
+                android:textColor="#BFE7FA"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:ownerName="@{viewM.currentViewUser.firstname + ' ' + viewM.currentViewUser.lastname}"
+                tools:text="Thomas Mr" />
+
+            <TextView
+                android:id="@+id/archive_t"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#BFE7FA"
+                android:textSize="15dp"
+                android:textStyle="italic"
+                tools:text="Noob" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/num_fr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/num_fr"
+                    android:textColor="#BFE7FA"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:ownerName="@{String.valueOf(viewM.currentViewUser.numFr)}"
+                    tools:text="16k" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/num_post"
+                    android:textColor="#BFE7FA"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:ownerName="@{String.valueOf(viewM.currentViewUser.numPost)}"
+                    tools:text="1045" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/num_song"
+                    android:textColor="#BFE7FA"
+                    android:textSize="16dp"
+
+                    android:textStyle="bold"
+                    app:ownerName="@{String.valueOf(viewM.currentViewUser.numSong)}"
+                    tools:text="119" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fr_lb"
+                    android:textColor="#BFE7FA"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/post_lb"
+                    android:textColor="#BFE7FA"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/song_lb"
+                    android:textColor="#BFE7FA"
+                    android:textSize="16dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/grid_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/action_btn"
+            app:layout_constraintTop_toBottomOf="@id/prf" />
+
+        <LinearLayout
+            android:id="@+id/action_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rq_lb" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel_lb" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/un_fr_lb" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

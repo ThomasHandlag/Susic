@@ -7,7 +7,7 @@
 
         <variable
             name="post"
-            type="com.example.susic.data.PostData" />
+            type="com.example.susic.data.Post" />
     </data>
 
     <LinearLayout
@@ -24,22 +24,26 @@
                 android:id="@+id/user_img"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/face22"
-                app:layout_constraintEnd_toStartOf="@+id/user_tit_layout"
+                tools:src="@drawable/face22"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:userImg="@{post.userImageUrl}"
                 app:shapeAppearanceOverlay="@style/RoundButton"
-                app:userImg="@{post.userImageUrl}" />
+                />
 
             <LinearLayout
                 android:id="@+id/user_tit_layout"
                 android:layout_width="236dp"
                 android:layout_height="49dp"
+                android:layout_marginStart="33dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="44dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toStartOf="@id/action_btn"
+                app:layout_constraintStart_toEndOf="@+id/user_img"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -81,89 +85,89 @@
             app:titleThumb="@{post.textTitle}"
             tools:text="Thumb text" />
 
-       <androidx.constraintlayout.widget.ConstraintLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-           <LinearLayout
-               android:layout_width="0dp"
-               android:layout_height="match_parent"
-               android:orientation="vertical"
-               app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
-               app:layout_constraintStart_toStartOf="parent">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+                app:layout_constraintStart_toStartOf="parent">
 
-               <VideoView
-                   android:id="@+id/visualizer"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:visibility="gone" />
+                <VideoView
+                    android:id="@+id/visualizer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone" />
 
-               <ImageView
-                   android:id="@+id/img_view_thumb"
-                   android:layout_width="match_parent"
-                   android:layout_height="160dp"
-                   android:contentDescription="@string/img_lb"
-                   app:imgThumb="@{post.imgThumb}" />
+                <ImageView
+                    android:id="@+id/img_view_thumb"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:contentDescription="@string/img_lb"
+                    app:imgThumb="@{post.imgThumb}" />
 
-               <SeekBar
-                   android:id="@+id/audio_prg"
-                   android:layout_marginTop="4dp"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:contentDescription="@string/prg_indicator" />
-           </LinearLayout>
+                <SeekBar
+                    android:id="@+id/audio_prg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:visibility="invisible"
+                    android:contentDescription="@string/prg_indicator" />
+            </LinearLayout>
 
-           <LinearLayout
-               android:id="@+id/linearLayout2"
-               android:layout_width="wrap_content"
-               android:layout_height="match_parent"
-               android:gravity="center"
-               android:orientation="vertical"
-               app:layout_constraintEnd_toEndOf="parent">
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent">
 
 
-               <com.google.android.material.button.MaterialButton
-                   android:id="@+id/pause_btn"
-                   style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-                   android:layout_width="48dp"
-                   android:layout_height="48dp"
-                   android:contentDescription="@string/img_lb"
-                   app:icon="@drawable/ic_round_play_arrow_24" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/pause_btn"
+                    style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/img_lb"
+                    app:icon="@drawable/ic_round_play_arrow_24" />
 
-               <com.google.android.material.button.MaterialButton
-                   android:id="@+id/com.google.android.material.button.MaterialButton3"
-                   style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-                   android:layout_width="48dp"
-                   android:layout_height="48dp"
-                   android:contentDescription="@string/img_lb"
-                   app:icon="@drawable/ic_round_favorite_24" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/com.google.android.material.button.MaterialButton3"
+                    style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/img_lb"
+                    app:icon="@drawable/ic_round_favorite_24" />
 
-               <com.google.android.material.button.MaterialButton
-                   android:id="@+id/com_btn"
-                   style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-                   android:layout_width="48dp"
-                   android:layout_height="48dp"
-                   android:contentDescription="@string/img_lb"
-                   app:icon="@drawable/ic_round_comment_24"
-                   app:layout_constraintEnd_toStartOf="@+id/com.google.android.material.button.MaterialButton"
-                   app:layout_constraintHorizontal_bias="0.5" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/com_btn"
+                    style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/img_lb"
+                    app:icon="@drawable/ic_round_comment_24"
+                    app:layout_constraintEnd_toStartOf="@+id/com.google.android.material.button.MaterialButton"
+                    app:layout_constraintHorizontal_bias="0.5" />
 
-               <com.google.android.material.button.MaterialButton
-                   android:id="@+id/com.google.android.material.button.MaterialButton"
-                   style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-                   android:layout_width="48dp"
-                   android:layout_height="48dp"
-                   android:contentDescription="@string/img_lb"
-                   app:icon="@drawable/ic_round_share_24" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/com.google.android.material.button.MaterialButton"
+                    style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/img_lb"
+                    app:icon="@drawable/ic_round_share_24" />
 
-           </LinearLayout>
-       </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            app:dividerInsetEnd="16dp"
-            app:dividerInsetStart="16dp" />
+            app:dividerInsetEnd="0dp"
+            app:dividerInsetStart="0dp" />
     </LinearLayout>
 </layout>

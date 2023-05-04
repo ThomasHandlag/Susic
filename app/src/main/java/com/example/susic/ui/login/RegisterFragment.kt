@@ -15,35 +15,19 @@ import com.example.susic.R
 import com.example.susic.data.Artist
 import com.example.susic.data.User
 import com.example.susic.databinding.FragmentRegistBinding
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [RegisterFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RegisterFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
+
     private lateinit var binding: FragmentRegistBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,37 +43,47 @@ class RegisterFragment : Fragment() {
         binding.registerBtn.setOnClickListener {
             val mail = binding.mail.editText?.text.toString().trim()
             val pass = binding.password.editText?.text.toString()
-            auth.createUserWithEmailAndPassword(
-                mail,
-                pass
-            )
-                .addOnCompleteListener(requireActivity()) { task ->
-                    if (task.isSuccessful) {
-                        auth.signInWithEmailAndPassword(mail, pass).addOnCompleteListener {
-                            val fullName = binding.username.editText?.text.toString()
-                            val splitIndex = fullName.indexOf(" ")
-                            val firstName = fullName.substring(0, splitIndex)
-                            val lastName = fullName.substring(splitIndex, fullName.lastIndex)
-                            db.collection("users").add(
-                                User(
-                                    id = auth.currentUser?.uid.toString(),
-                                    contact = auth.currentUser?.email.toString(),
-                                    firstName = firstName,
-                                    lastName = lastName
-                                )
-                            ).addOnCompleteListener {
-                                Log.i("Register info", "${it.result}")
-                            }.addOnFailureListener {
-                                Log.i("Error:", "Add document failed")
+            val fullName = binding.username.editText?.text.toString()
+            if (mail != "" && pass != "" && fullName != "") {
+                auth.createUserWithEmailAndPassword(
+                    mail,
+                    pass
+                )
+                    .addOnCompleteListener(requireActivity()) { task ->
+                        if (task.isSuccessful) {
+                            auth.signInWithEmailAndPassword(mail, pass).addOnCompleteListener {
+
+                                val splitIndex = fullName.indexOf(" ")
+                                val firstName = fullName.substring(0, splitIndex)
+                                val lastName = fullName.substring(splitIndex, fullName.length)
+                                db.collection("users").add(
+                                    User(
+                                        id = auth.currentUser?.uid.toString(),
+                                        contact = auth.currentUser?.email.toString(),
+                                        firstname = firstName,
+                                        lastname = lastName,
+                                        birthday = Calendar.getInstance().time
+                                    )
+                                ).addOnCompleteListener {
+                                    Log.i("Register info", "${it.result}")
+                                }.addOnFailureListener {
+                                    Log.i("Error:", it.toString())
+                                }
+                                val intent = Intent(context, MainActivity::class.java)
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                startActivity(intent)
+                                requireActivity().finish()
                             }
-                            val intent = Intent(context, MainActivity::class.java)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                            startActivity(intent)
-                            requireActivity().finish()
-                        }
-                    } else
-                        Toast.makeText(context, "Invalid credential", Toast.LENGTH_LONG).show()
+                        } else
+                            Toast.makeText(context, "Invalid credential", Toast.LENGTH_LONG).show()
+                    }
+            } else {
+                if (fullName == "") {
+                    binding.username.error = getString(R.string.invalid_username)
                 }
+                if (mail == "") binding.mail.error = getString(R.string.invalid_mail)
+                if (pass == "") binding.password.error = getString(R.string.invalid_password)
+            }
         }
         binding.login.setOnClickListener {
             this.findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
@@ -97,13 +91,6 @@ class RegisterFragment : Fragment() {
     }
 
     companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RegisterFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
     }
 }

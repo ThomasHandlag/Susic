@@ -35,13 +35,15 @@ class SettingsFragment : PreferenceFragmentCompat() {
             this.requireActivity().finish()
             true
         }
-        themePreference?.setOnPreferenceChangeListener { preference, newValue ->
+        themePreference?.setOnPreferenceChangeListener { _, _ ->
             if (themePreference.isChecked) {
                 AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
+                themePreference.setIcon(R.drawable.ic_round_mode_night_24)
                 sharePrefEdit.putInt("THEME_MODE", MODE_NIGHT_NO)
                 sharePrefEdit.apply()
             } else {
                 AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
+                themePreference.setIcon(R.drawable.ic_round_light_mode_24)
                 sharePrefEdit.putInt("THEME_MODE", MODE_NIGHT_YES)
                 sharePrefEdit.apply()
             }

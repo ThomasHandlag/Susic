@@ -1,5 +1,5 @@
-<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <PreferenceCategory
         app:title="@string/messages_header"
@@ -39,21 +39,19 @@
             app:title="@string/attachment_title"
             tools:ignore="TouchTargetSizeCheck" />
     </PreferenceCategory>
-    <PreferenceCategory
-        app:title="@string/theme_lb">
+    <PreferenceCategory app:title="@string/theme_lb">
         <SwitchPreference
+            app:defaultValue="false"
             app:key="theme"
-            app:title="@string/cho_the"
             app:summaryOff="@string/light_lb"
             app:summaryOn="@string/dark_lb"
-            app:defaultValue="false"
-            />
+            app:title="@string/cho_the" />
     </PreferenceCategory>
     <PreferenceCategory>
         <Preference
+            app:icon="@drawable/ic_round_logout_24"
             app:key="signOut"
-            app:title="@string/sign_out_lb"
-            />
+            app:title="@string/sign_out_lb" />
     </PreferenceCategory>
 
 </PreferenceScreen>

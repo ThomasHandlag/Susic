@@ -15,12 +15,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class LoginFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
+
     private lateinit var binding: FragmentLoginBinding
     private lateinit var auth: FirebaseAuth
 
@@ -46,20 +42,15 @@ class LoginFragment : Fragment() {
             }
         }
     }
-private fun runMainActivity() {
-    val intent = Intent(requireActivity(), MainActivity::class.java)
-    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-    startActivity(intent)
-    requireActivity().finish()
-}
+
+    private fun runMainActivity() {
+        val intent = Intent(requireActivity(), MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        requireActivity().finish()
+    }
+
     companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LoginFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
     }
 }

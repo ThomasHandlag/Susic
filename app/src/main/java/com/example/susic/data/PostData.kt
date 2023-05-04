@@ -1,16 +1,22 @@
 package com.example.susic.data
 
-import android.os.Parcel
-import android.os.Parcelable
+import java.util.*
 
+data class Post(
+    var userName: String = "Thomas",
+    var ownerId: String = "",
+    var id: String = "",
+    var urlVisual: String = "",
+    var textTitle: String = "",
+    var datePost: Date = Date(),
+    var imgThumb: String = "",
+    var userImageUrl: String = ""
+)
 
 data class PostData(
-    val userName: String = "Thomas",
-    val ownerId: String = "",
     val id: String = "",
     val urlVisual: String = "",
     val textTitle: String = "",
-    val datePost: String = "",
-    val imgThumb: String? = "",
-    val userImageUrl: String = ""
+    val datePost: Date,
+    val imgThumb: String = "",
 )

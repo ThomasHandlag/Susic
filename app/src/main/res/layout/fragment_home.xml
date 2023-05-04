@@ -4,49 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     tools:context=".ui.home.HomeFragment">
+
     <data>
+
         <variable
             name="viewModel"
-            type="com.example.susic.data.ApiViewModel" />
+            type="com.example.susic.data.PlayerViewModel" />
     </data>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
+        <ProgressBar
+            android:id="@+id/load_img"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:liftOnScroll="true"
-            app:expanded="false">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/topAppBar"
-                style="@style/Widget.MaterialComponents.Toolbar.Primary"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:contentScrim="?attr/colorPrimary"
-                app:navigationIcon="@drawable/ic_baseline_menu_24"
-                app:statusBarScrim="?attr/colorPrimaryVariant"
-                app:title="@string/page_title">
-
-                <SearchView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/searchbar_hint"
-                    app:collapseIcon="@drawable/ic_round_search_24" />
-            </com.google.android.material.appbar.MaterialToolbar>
-        </com.google.android.material.appbar.AppBarLayout>
-
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rec_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="2dp"
-            android:layout_marginTop="?attr/actionBarSize"
-            app:posts="@{viewModel.posts}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-             />
+            app:posts="@{viewModel.posts}" />
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:src="@drawable/ic_round_signal_wifi_off_24"
+            />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</layout>
-<!--                app:layout_scrollFlags="scroll|enterAlways|snap"
+</layout><!--                app:layout_scrollFlags="scroll|enterAlways|snap"
 -->
+<!--<com.google.android.material.appbar.AppBarLayout-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--app:expanded="false"-->
+<!--app:liftOnScroll="true">-->
+
+<!--<com.google.android.material.appbar.MaterialToolbar-->
+<!--    android:id="@+id/topAppBar"-->
+<!--    style="@style/Widget.MaterialComponents.Toolbar.Primary"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="?attr/actionBarSize"-->
+<!--    app:contentScrim="?attr/colorPrimary"-->
+<!--    app:navigationIcon="@drawable/ic_baseline_menu_24"-->
+<!--    app:statusBarScrim="?attr/colorPrimaryVariant"-->
+<!--    app:title="@string/page_title">-->
+
+<!--    <com.google.android.material.search.SearchBar-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="@string/searchbar_hint"-->
+<!--        app:collapseIcon="@drawable/ic_round_search_24" />-->
+<!--</com.google.android.material.appbar.MaterialToolbar>-->
+<!--</com.google.android.material.appbar.AppBarLayout>-->

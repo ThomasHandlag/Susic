@@ -3,10 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.susic.ui.notify.Notification" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:padding="4dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="4dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/user_thumb"
@@ -14,14 +21,13 @@
             android:layout_height="60dp"
             android:contentDescription="@string/img_lb"
             android:src="@drawable/face22"
-            app:shapeAppearanceOverlay="@style/RoundButton"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
 
-            app:layout_constraintTop_toTopOf="parent" />
+            app:shapeAppearanceOverlay="@style/RoundButton" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
-
             android:layout_width="238dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -32,26 +38,57 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.473">
 
-            <TextView
-                android:id="@+id/notify_text_title"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                tools:text="Notify Title" />
+                android:orientation="horizontal"
+                android:padding="4dp">
 
-            <TextView
-                android:id="@+id/notify_text_caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Notify caption" />
+                <TextView
+                    android:id="@+id/notify_text_title"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    tools:text="Notify Title" />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    tools:text="10/2/2023" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/notify_text_caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    tools:text="Notify caption" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/ac_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ac_lb"
+                    />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/rej_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rej_lb"
+                    />
+            </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/notify_text_date"
-            android:layout_width="82dp"
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/img_lb"
+            app:icon="@drawable/ic_round_settings_24"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Notify date pop up" />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
