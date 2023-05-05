@@ -20,10 +20,10 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:contentDescription="@string/img_lb"
-            android:src="@drawable/face22"
+            tools:src="@drawable/face22"
+            app:userImg="@{data.user.urlImg}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-
             app:shapeAppearanceOverlay="@style/RoundButton" />
 
         <LinearLayout
@@ -49,11 +49,15 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
+                    android:text="@string/user_name"
+                    app:ownerName="@{data.content}"
                     tools:text="Notify Title" />
 
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
+                    android:text="@string/user_name"
+                    app:ownerName="@{data.date}"
                     tools:text="10/2/2023" />
             </LinearLayout>
 

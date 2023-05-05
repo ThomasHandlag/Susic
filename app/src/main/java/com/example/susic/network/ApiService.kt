@@ -244,7 +244,7 @@ object DB : DBInterface {
         val temp = Post()
         var userNameTemp = ""
         var url = ""
-        userRef.whereGreaterThanOrEqualTo("id", postData.id.substring(0, 5)).get()
+        userRef.whereEqualTo("id", postData.uid).get()
             .addOnSuccessListener { rs ->
                 for (e in rs) {
                     userNameTemp =
@@ -274,6 +274,7 @@ object DB : DBInterface {
             textTitle = map["textTitle"].toString(),
             datePost = convertToDate(map["datePost"]),
             imgThumb = map["imgThumb"].toString(),
+            uid = map["uid"].toString()
         )
 
     override fun getComments(key: String): List<Comments> {
@@ -351,7 +352,8 @@ object DB : DBInterface {
                         "textTitle" to title,
                         "datePost" to Timestamp(Calendar.getInstance().time),
                         "imgThumb" to it.result.toString(),
-                        "urlVisual" to ""
+                        "urlVisual" to "",
+                        "uid" to Firebase.auth.uid.toString()
                     )
                     val aRef = storeRef.child("tracks/$id")
                     if (aUri != null) {
@@ -388,7 +390,8 @@ object DB : DBInterface {
                     "titleText" to title,
                     "datePost" to Timestamp(Calendar.getInstance().time),
                     "imgThumb" to "",
-                    "urlVisual" to ""
+                    "urlVisual" to "",
+                    "uid" to Firebase.auth.uid.toString()
                 )
             ).addOnSuccessListener { itp ->
                 Log.i(LOG_TAG, itp.toString())
@@ -478,7 +481,7 @@ object DB : DBInterface {
                                     date = SimpleDateFormat(
                                         "MM/dd/yy",
                                         Locale.US
-                                    ).format(convertToDate(d.data["date"]))
+                                    ).format(convertToDate(e.data["date"]))
                                 )
                             )
                         }

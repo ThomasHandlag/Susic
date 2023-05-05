@@ -19,4 +19,5 @@ data class PostData(
     val textTitle: String = "",
     val datePost: Date,
     val imgThumb: String = "",
+    val uid: String = ""
 )

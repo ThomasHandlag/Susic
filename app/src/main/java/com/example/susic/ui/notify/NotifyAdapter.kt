@@ -23,6 +23,7 @@ class NotifyAdapter(private val choice: (id: String, ch: Boolean) -> Unit): List
 
 class NotifyHolder(private val binding: NotifyItemBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(nof: Notification, choice: (id: String, ch: Boolean) -> Unit) {
+        binding.data = nof
         with(binding) {
             if (nof.type == 1) {
                 rejBtn.visibility = View.VISIBLE
