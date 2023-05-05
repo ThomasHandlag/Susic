@@ -85,9 +85,6 @@ class RegisterFragment : Fragment() {
                 if (pass == "") binding.password.error = getString(R.string.invalid_password)
             }
         }
-        binding.login.setOnClickListener {
-            this.findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-        }
     }
 
     companion object {

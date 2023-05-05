@@ -47,7 +47,7 @@
     <string name="rq_lb">Kết bạn</string>
     <string name="fr_lb">bạn</string>
     <string name="post_lb">bài viết</string>
-    <string name="song_lb">bài</string>
+    <string name="song_lb">Bài hát</string>
     <string name="view_prf_lb">Xem hồ sơ</string>
     <string name="invalid_mail">Mail không hợp lệ</string>
     <string name="ac_lb">Chấp nhận</string>
@@ -56,4 +56,8 @@
     <string name="gender_lb">Giới tính</string>
     <string name="fn_lb">Tên</string>
     <string name="ln_lb">Họ</string>
+    <string name="friend_lb">Bạn bè</string>
+    <string name="empty_lb">Không có gì để khoe</string>
+    <string name="nof_user_update">Thay đổi đã được lưu</string>
+    <string name="failed_upload">Thay đổi thất bại</string>
 </resources>

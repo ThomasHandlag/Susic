@@ -33,17 +33,23 @@
                 app:shapeAppearanceOverlay="@style/RoundButton"
                 app:userImg="@{viewModel.currentUser.urlImg}"
                 tools:src="@drawable/face22" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/temp_img"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="gone"
+                app:shapeAppearanceOverlay="@style/RoundButton"
+                tools:src="@drawable/face22" />
 
             <TextView
                 android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="4dp"
-                android:text="@string/user_name"
                 android:textColor="#D7D7DA"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                app:ownerName="@{viewModel.currentUser.firstname + ' ' + viewModel.currentUser.lastname}"
                 tools:text="Thomas Mr" />
         </LinearLayout>
 
@@ -63,6 +69,7 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/f_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/fn_lb"
@@ -75,6 +82,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/l_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -103,6 +111,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/contact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -111,7 +120,8 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
-                        android:layout_height="50dp" />
+                        android:layout_height="50dp"
+                        android:text="@{viewModel.currentUser.contact}"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -141,12 +151,15 @@
                 android:gravity="center">
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cancel_btn"
                     style="@style/Widget.App.Button.OutlinedButton.IconOnly"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:visibility="gone"
                     app:icon="@drawable/ic_round_cancel_24" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/save_btn"
                     style="@style/Widget.App.Button.OutlinedButton.IconOnly"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
@@ -157,6 +170,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:padding="2dp"
+                    android:visibility="gone"
                     android:text="@string/reset_pw_lb" />
             </LinearLayout>
         </LinearLayout>

@@ -14,6 +14,7 @@ import com.example.susic.data.Comments
 import com.example.susic.data.Post
 import com.example.susic.data.PostData
 import com.example.susic.data.User
+import com.example.susic.network.LOG_TAG
 import com.example.susic.ui.artist.ArtistFragment
 import com.example.susic.ui.home.CommentAdapter
 import com.example.susic.ui.home.PostAdapter
@@ -24,6 +25,7 @@ import java.util.*
 @BindingAdapter("posts")
 fun RecyclerView.posts(posts: List<Post>) {
     val adapter = adapter as PostAdapter
+    Log.e(LOG_TAG, posts.toString()+"binding")
     adapter.submitList(posts)
 }
 
@@ -61,7 +63,7 @@ fun ShapeableImageView.userImg(imgUrl: String) {
             .load(imgUri)
             .apply(
                 RequestOptions()
-                    .placeholder(R.drawable.ic_round_person_24)
+                    .placeholder(R.drawable.loading_animation)
                     .error(R.drawable.ic_round_person_24)
             )
             .into(this)

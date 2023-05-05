@@ -7,4 +7,5 @@ interface MediaPlayerInterface {
     fun onRepeat(toastMessage: Int)
     fun onStart()
     fun onPause()
+    fun onComplete()
 }

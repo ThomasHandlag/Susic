@@ -19,15 +19,19 @@ data class User(
 )
 
 data class Artist(
-    val id: String = "",
-    val albumToken: String = "",
-    val trackNum: Int = 0
+    var id: String = "",
+    val album: String = "",
+    val trackNum: Int = 0,
+    var name: String ="",
+    var url: String ="",
 )
 
 data class Track(
-    val id: String = "",
-    val name: String = "",
-    val url: String = "",
+    var id: String = "",
+    var name: String = "",
+    var url: String = "",
+    var urlImage: String = "",
+    var uid: String = ""
 )
 
 data class Album(

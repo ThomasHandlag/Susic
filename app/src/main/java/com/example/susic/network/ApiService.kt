@@ -2,13 +2,15 @@ package com.example.susic.network
 
 import android.icu.text.SimpleDateFormat
 import android.net.Uri
-import android.provider.ContactsContract
 import android.util.Log
 import com.example.susic.AppCallBackState
 import com.example.susic.StatusEnums
+import com.example.susic.data.Album
+import com.example.susic.data.Artist
 import com.example.susic.data.Comments
 import com.example.susic.data.Post
 import com.example.susic.data.PostData
+import com.example.susic.data.Track
 import com.example.susic.data.User
 import com.example.susic.ui.notify.Notification
 import com.google.firebase.Timestamp
@@ -22,35 +24,53 @@ import com.google.firebase.storage.ktx.storage
 import java.util.*
 import kotlin.random.Random
 
-interface DBInterface {
-    val db: FirebaseFirestore
-    fun getComments(key: String): List<Any>
-    fun writePost(title: String, uri: Uri?, aUri: Uri?)
-    fun getPosts(n: Long): List<Post>
-    fun getCurrentUser(): User
-    fun onListenCommentState(id: String)
-    fun onDestroyListenComment()
-    fun getNotifications(id: String): List<Notification>
-    fun like(id: String, like: Int)
-    fun comment(str: String, id: String, type: Int)
-    fun getReplies(id: String): List<Comments>
-}
-
 interface StateListener {
     fun onSuccess(rs: StatusEnums)
     fun onCommentSuccess(rs: StatusEnums)
     fun onListenCommentStateChange()
     fun onListenCommentChange()
     fun onListenReplySuccess(rs: StatusEnums)
+    fun onUpdateUserSuccess(rs: Boolean)
+    fun onGetUsersPosts(rs: StatusEnums)
 }
 
 const val LOG_TAG = "AppData"
 
-object DB : DBInterface {
+object DB {
     lateinit var state: StateListener
     lateinit var callBackState: AppCallBackState
-    override val db: FirebaseFirestore
+
+    @JvmStatic
+    val db: FirebaseFirestore
         get() = Firebase.firestore
+
+    private val listGenre = listOf<Map<String, String>>(
+        mapOf(
+            "name" to "pop",
+            "thumb" to "https://i.pinimg.com/236x/53/33/ac/5333acf5f98a3d47c3c17403a5e1e6c7.jpg",
+        ),
+        mapOf(
+            "name" to "edm",
+            "thumb" to "https://i.pinimg.com/236x/95/26/09/952609ee4f098052b69acfaf39b3349d.jpg",
+        ),
+        mapOf(
+            "name" to "r&b",
+            "thumb" to "https://i.pinimg.com/236x/53/33/ac/5333acf5f98a3d47c3c17403a5e1e6c7.jpg",
+        ),
+        mapOf(
+            "name" to "country",
+            "thumb" to "https://i.pinimg.com/236x/a3/03/02/a30302da6060b6bea4c2c58d36f0dd49.jpg",
+        ),
+        mapOf(
+            "name" to "classical",
+            "thumb" to "https://i.pinimg.com/236x/3d/75/0e/3d750ec018b9c476e1989e991aa90178.jpg",
+        ),
+        mapOf(
+            "name" to "rap/hiphop",
+            "thumb" to "https://i.pinimg.com/236x/88/f9/15/88f91586d2bd17ef8530c4e7c4bf4b5c.jpg",
+        )
+    )
+
     private const val nChars = "abcdefghjklmnouivtxrwqzABCDEFGHIJKLMNOPQSRTUVXYWZ0123456789"
     private val postsRef = db.collection("posts")
     private val userRef = db.collection("users")
@@ -62,12 +82,11 @@ object DB : DBInterface {
     private val storeRef = Firebase.storage.reference
     private val frRef = db.collection("friend")
     private val trackRef = db.collection("tracks")
-    private val postData = mutableListOf<PostData>()
-    private val posts = mutableListOf<Post>()
     private var listen: ListenerRegistration? = null
     private var likeListener: ListenerRegistration? = null
 
-    override fun onListenCommentState(id: String) {
+    @JvmStatic
+    fun onListenCommentState(id: String) {
         listen = comRef.whereGreaterThanOrEqualTo("id", id.substring(5, 10))
             .addSnapshotListener { _, e ->
                 if (e != null) {
@@ -85,20 +104,42 @@ object DB : DBInterface {
 //        }
     }
 
+    @JvmStatic
     fun destroyNotificationListener() {
         noListener?.remove()
     }
 
-    override fun onDestroyListenComment() {
+    @JvmStatic
+    fun onDestroyListenComment() {
         listen?.remove()
         likeListener?.remove()
     }
 
-    override fun getPosts(n: Long): List<Post> {
-        getPostData(n)
+    @JvmStatic
+    fun getPosts(n: Long): List<Post> {
+        val posts = mutableListOf<Post>()
+        val postData = mutableListOf<PostData>()
+        state.onSuccess(StatusEnums.LOADING)
+        postsRef.orderBy("datePost", Query.Direction.DESCENDING).limit(n).get()
+            .addOnSuccessListener { rs ->
+                if (!rs.isEmpty) for (doc in rs) {
+                    postData.add(initPostData(doc.data))
+                }
+                for (e in postData) {
+                    posts.add(initPost(e))
+                }
+                if (::state.isInitialized) {
+                    state.onSuccess(StatusEnums.DONE)
+                }
+            }.addOnFailureListener {
+                if (::state.isInitialized) {
+                    state.onSuccess(StatusEnums.ERROR)
+                }
+            }
         return posts
     }
 
+    @JvmStatic
     fun reply(id: String, cont: String, repId: String) {
         val i = "${id.substring(5, 10)}${generateId()}"
         comRef.document(i).set(
@@ -113,7 +154,8 @@ object DB : DBInterface {
         )
     }
 
-    override fun comment(str: String, id: String, type: Int) {
+    @JvmStatic
+    fun comment(str: String, id: String, type: Int) {
         val i = "${id.substring(5, 10)}${generateId()}"
         val data = hashMapOf(
             "content" to str,
@@ -132,6 +174,7 @@ object DB : DBInterface {
         }
     }
 
+    @JvmStatic
     private fun countRep(id: String): Int {
         var i = 0
         comRef.whereGreaterThanOrEqualTo("id", id).get().addOnSuccessListener {
@@ -144,23 +187,22 @@ object DB : DBInterface {
         return i
     }
 
-    override fun getReplies(id: String): List<Comments> {
+    @JvmStatic
+    fun getReplies(id: String): List<Comments> {
         state.onListenReplySuccess(StatusEnums.LOADING)
         val l = mutableListOf<Comments>()
-        Log.i(LOG_TAG, "id: $id")
         comRef.whereEqualTo("uid", id).get().addOnSuccessListener { rs ->
             if (!rs.isEmpty) for (e in rs) {
                 var bol = false
-                Log.i(LOG_TAG, e.toString() + "null")
                 likeRef.whereEqualTo("id", e.data["id"])
                     .whereGreaterThanOrEqualTo("id", Firebase.auth.uid.toString()).get()
                     .addOnSuccessListener {
                         if (!it.isEmpty) {
                             bol = true
                         }
-                        userRef.whereGreaterThanOrEqualTo(
+                        userRef.whereEqualTo(
                             "id",
-                            e.data["id"].toString().substring(5, 10)
+                            e.data["oid"].toString()
                         ).get().addOnSuccessListener { it1 ->
                             for (u in it1) {
                                 l.add(
@@ -192,7 +234,8 @@ object DB : DBInterface {
         return l
     }
 
-    override fun getCurrentUser(): User {
+    @JvmStatic
+    fun getCurrentUser(): User {
         val user = User()
         callBackState.onStateChange(StatusEnums.LOADING)
         userRef.whereEqualTo("id", Firebase.auth.uid.toString()).get()
@@ -209,37 +252,15 @@ object DB : DBInterface {
                     }
                 }
                 callBackState.onStateChange(StatusEnums.DONE)
-                Log.i(LOG_TAG, user.toString())
             }
             .addOnFailureListener {
-                Log.i(LOG_TAG, it.stackTraceToString())
                 callBackState.onStateChange(StatusEnums.ERROR)
             }
         return user
     }
 
-    private fun getPostData(n: Long): List<PostData> {
-        state.onSuccess(StatusEnums.LOADING)
-        postsRef.orderBy("datePost", Query.Direction.DESCENDING).limit(n).get()
-            .addOnSuccessListener { rs ->
-                if (!rs.isEmpty) for (doc in rs) {
-                    postData.add(initPostData(doc.data))
-                }
-                for (e in postData) {
-                    posts.add(initPost(e))
-                }
-                if (::state.isInitialized) {
-                    state.onSuccess(StatusEnums.DONE)
-                }
-            }.addOnFailureListener {
-                Log.i(LOG_TAG, it.toString())
-                if (::state.isInitialized) {
-                    state.onSuccess(StatusEnums.ERROR)
-                }
-            }
-        return postData
-    }
 
+    @JvmStatic
     private fun initPost(postData: PostData): Post {
         val temp = Post()
         var userNameTemp = ""
@@ -250,7 +271,6 @@ object DB : DBInterface {
                     userNameTemp =
                         e.data["firstname"].toString() + " " + e.data["lastname"].toString()
                     url = e.data["urlImg"].toString()
-                    Log.i(LOG_TAG, userNameTemp)
                 }
                 with(temp) {
                     id = postData.id
@@ -267,6 +287,7 @@ object DB : DBInterface {
         return temp
     }
 
+    @JvmStatic
     private fun initPostData(map: Map<String, Any>): PostData =
         PostData(
             id = map["id"].toString(),
@@ -277,10 +298,10 @@ object DB : DBInterface {
             uid = map["uid"].toString()
         )
 
-    override fun getComments(key: String): List<Comments> {
+    @JvmStatic
+    fun getComments(key: String): List<Comments> {
         val commentsList = mutableListOf<Comments>()
         state.onCommentSuccess(StatusEnums.LOADING)
-        Log.i(LOG_TAG, key.substring(6, 10))
         comRef.whereEqualTo("pid", key)
             .whereEqualTo("tag", "main").get()
             .addOnSuccessListener { rs ->
@@ -332,7 +353,8 @@ object DB : DBInterface {
         return commentsList
     }
 
-    override fun writePost(title: String, uri: Uri?, aUri: Uri?) {
+    @JvmStatic
+    fun writePost(title: String, uri: Uri?, aUri: Uri?) {
         val id = generateId()
         if (uri != null) {
             val ref = storeRef.child("postimage/${id}")
@@ -346,7 +368,6 @@ object DB : DBInterface {
                 ref.downloadUrl
             }.addOnCompleteListener {
                 if (it.isSuccessful) {
-                    Log.i(LOG_TAG, it.result.toString())
                     val data = mutableMapOf(
                         "id" to generateId(),
                         "textTitle" to title,
@@ -402,7 +423,8 @@ object DB : DBInterface {
         }
     }
 
-    override fun like(id: String, like: Int) {
+    @JvmStatic
+    fun like(id: String, like: Int) {
         val l = "${like + 1}"
         comRef.document(id).update(
             "like", l
@@ -417,11 +439,13 @@ object DB : DBInterface {
         }
     }
 
+    @JvmStatic
     private fun convertToDate(date: Any?): Date {
         val tempDate = date as Timestamp
         return tempDate.toDate()
     }
 
+    @JvmStatic
     private fun generateId(): String {
         val authToken = Firebase.auth.uid.toString().substring(0, 5)
         var idToken = ""
@@ -432,52 +456,26 @@ object DB : DBInterface {
         return "${Firebase.auth.uid.toString().subSequence(0, 5)}$idToken"
     }
 
-    override fun getNotifications(id: String): List<Notification> {
+    @JvmStatic
+    fun getNotifications(id: String): List<Notification> {
         val notifications = mutableListOf<Notification>()
         callBackState.onListNotifyState(StatusEnums.LOADING)
         noRef.whereEqualTo("id", id).get().addOnSuccessListener {
-            if (!it.isEmpty) for (e in it) {
-                userRef.whereEqualTo("id", e.data["uid"]).get().addOnSuccessListener { il ->
-                    if (!il.isEmpty) for (d in il) {
-                        notifications.add(
-                            Notification(
-                                id = e.data["id"].toString(),
-                                content = e.data["content"].toString(),
-                                user = User(
-                                    id = d.data["id"].toString(),
-                                    firstname = d.data["firstname"].toString(),
-                                    lastname = d.data["lastname"].toString(),
-                                    urlImg = d.data["urlImg"].toString(),
-                                ),
-                                type = 0,
-                                date = SimpleDateFormat(
-                                    "MM/dd/yy",
-                                    Locale.US
-                                ).format(convertToDate(d.data["date"]))
-                            )
-                        )
-                    }
-                    callBackState.onListNotifyState(StatusEnums.DONE)
-                }
-            }
-            callBackState.onListNotifyState(StatusEnums.LOADING)
-            requestRef.whereEqualTo("rid", id).get().addOnSuccessListener { ir ->
-                if (!ir.isEmpty) for (e in ir) {
+            if (!it.isEmpty) {
+                for (e in it) {
                     userRef.whereEqualTo("id", e.data["uid"]).get().addOnSuccessListener { il ->
                         if (!il.isEmpty) for (d in il) {
-                            val content =
-                                d.data["firstname"].toString() + d.data["lastname"].toString()
                             notifications.add(
                                 Notification(
                                     id = e.data["id"].toString(),
-                                    content = content,
-                                    type = 1,
+                                    content = e.data["content"].toString(),
                                     user = User(
                                         id = d.data["id"].toString(),
                                         firstname = d.data["firstname"].toString(),
                                         lastname = d.data["lastname"].toString(),
                                         urlImg = d.data["urlImg"].toString(),
                                     ),
+                                    type = 0,
                                     date = SimpleDateFormat(
                                         "MM/dd/yy",
                                         Locale.US
@@ -486,16 +484,47 @@ object DB : DBInterface {
                             )
                         }
                         callBackState.onListNotifyState(StatusEnums.DONE)
-                    }.addOnFailureListener {
-                        callBackState.onListNotifyState(StatusEnums.ERROR)
                     }
                 }
+                callBackState.onListNotifyState(StatusEnums.LOADING)
+            }
+            requestRef.whereEqualTo("rid", id).get().addOnSuccessListener { ir ->
+                if (!ir.isEmpty) {
+                    for (e in ir) {
+                        userRef.whereEqualTo("id", e.data["uid"]).get().addOnSuccessListener { il ->
+                            if (!il.isEmpty) for (d in il) {
+                                val content =
+                                    d.data["firstname"].toString() + d.data["lastname"].toString()
+                                notifications.add(
+                                    Notification(
+                                        id = e.data["id"].toString(),
+                                        content = content,
+                                        type = 1,
+                                        user = User(
+                                            id = d.data["id"].toString(),
+                                            firstname = d.data["firstname"].toString(),
+                                            lastname = d.data["lastname"].toString(),
+                                            urlImg = d.data["urlImg"].toString(),
+                                        ),
+                                        date = SimpleDateFormat(
+                                            "MM/dd/yy",
+                                            Locale.US
+                                        ).format(convertToDate(e.data["date"]))
+                                    )
+                                )
+                            }
+                            callBackState.onListNotifyState(StatusEnums.DONE)
+                        }.addOnFailureListener {
+                            callBackState.onListNotifyState(StatusEnums.ERROR)
+                        }
+                    }
+                } else callBackState.onListNotifyState(StatusEnums.EMPTY)
             }
         }
-
         return notifications
     }
 
+    @JvmStatic
     fun getUsers(): List<User> {
         val list = mutableListOf<User>()
         callBackState.onListenLoadState(StatusEnums.LOADING)
@@ -505,7 +534,7 @@ object DB : DBInterface {
                 Log.i(LOG_TAG, frList.toString())
                 if (!frList.isEmpty) for (frd in frList) {
                     userRef.whereNotEqualTo("id", frd.data["id"].toString())
-                        .whereNotEqualTo("id", Firebase.auth.uid).get()
+                        .whereGreaterThan("id", Firebase.auth.uid.toString()).get()
                         .addOnSuccessListener { frL ->
                             if (!frL.isEmpty) for (fr in frL) {
                                 list.add(
@@ -557,6 +586,7 @@ object DB : DBInterface {
         return list
     }
 
+    @JvmStatic
     fun countNum(id: String) {
         frRef.whereGreaterThanOrEqualTo("id", id).get().addOnSuccessListener {
             if (!it.isEmpty)
@@ -572,6 +602,7 @@ object DB : DBInterface {
         }
     }
 
+    @JvmStatic
     fun countNotification(n: (n: Int) -> Unit) {
         noRef.whereEqualTo("id", Firebase.auth.uid.toString()).get().addOnSuccessListener {
             if (!it.isEmpty)
@@ -579,6 +610,7 @@ object DB : DBInterface {
         }
     }
 
+    @JvmStatic
     fun acceptFriend(id: String) {
         frRef.document(Firebase.auth.uid.toString().substring(0, 5) + id.substring(6, 10)).set(
             hashMapOf(
@@ -590,6 +622,7 @@ object DB : DBInterface {
         requestRef.document(id).delete()
     }
 
+    @JvmStatic
     fun reject(id: String) {
 
     }
@@ -597,6 +630,7 @@ object DB : DBInterface {
     private val noRef = db.collection("notify")
     private var noListener: ListenerRegistration? = null
 
+    @JvmStatic
     fun listenChangedToNotify() {
         noListener = requestRef.addSnapshotListener { _, e ->
             if (e != null) {
@@ -607,6 +641,7 @@ object DB : DBInterface {
         }
     }
 
+    @JvmStatic
     fun request(id: String) {
         val i = Firebase.auth.uid.toString().substring(0, 5) + id.substring(0, 5)
         requestRef.document(i).set(
@@ -617,6 +652,142 @@ object DB : DBInterface {
                 "date" to Timestamp(Calendar.getInstance().time)
             )
         )
+    }
+
+    @JvmStatic
+    fun getTracks(): List<Track> {
+        callBackState.onLoadListSongs(StatusEnums.LOADING)
+        val list = mutableListOf<Track>()
+        trackRef.get().addOnSuccessListener {
+            if (!it.isEmpty) {
+                for (e in it) {
+                    list.add(
+                        Track(
+                            id = e.data["id"].toString(),
+                            url = e.data["url"].toString(),
+                            name = e.data["name"].toString(),
+                            urlImage = e.data["urlImage"].toString(),
+                            uid = e.data["uid"].toString()
+                        )
+                    )
+                }
+                callBackState.onLoadListSongs(StatusEnums.DONE)
+            } else callBackState.onLoadListSongs(StatusEnums.EMPTY)
+        }.addOnFailureListener {
+            callBackState.onLoadListSongs(StatusEnums.ERROR)
+        }
+        return list
+    }
+
+    @JvmStatic
+    fun getArtist(): List<Artist> {
+        val list = mutableListOf<Artist>()
+        callBackState.onLoadListArtists(StatusEnums.LOADING)
+        artistRef.get().addOnSuccessListener {
+            if (!it.isEmpty) {
+                for (e in it) {
+                    list.add(
+                        Artist(
+                            id = e.data["id"].toString(),
+                            name = e.data["name"].toString(),
+                            url = e.data["img"].toString(),
+                            album = e.data["album"].toString()
+                        )
+                    )
+                }
+                callBackState.onLoadListArtists(StatusEnums.DONE)
+            } else callBackState.onLoadListArtists(StatusEnums.EMPTY)
+        }.addOnFailureListener {
+            callBackState.onLoadListArtists(StatusEnums.ERROR)
+        }
+        return list
+    }
+
+    @JvmStatic
+    fun getArtistDetail(id: String): Pair<List<Track>, Album> {
+        callBackState.onLoadListSongs(StatusEnums.LOADING)
+        val list = mutableListOf<Track>()
+        val album = Album()
+        trackRef.whereEqualTo("uid", id).get().addOnSuccessListener {
+            if (!it.isEmpty) {
+                for (e in it) {
+                    list.add(
+                        Track(
+                            id = e.data["id"].toString(),
+                            url = e.data["url"].toString(),
+                            name = e.data["name"].toString(),
+                            urlImage = e.data["urlImage"].toString(),
+                            uid = e.data["uid"].toString()
+                        )
+                    )
+                }
+                callBackState.onLoadListSongs(StatusEnums.DONE)
+            } else callBackState.onLoadListSongs(StatusEnums.EMPTY)
+        }.addOnFailureListener {
+            callBackState.onLoadListSongs(StatusEnums.ERROR)
+        }
+        return Pair<List<Track>, Album>(list, album)
+    }
+
+    fun updateUserInfo(f: String = "", l: String = "", cont: String = "", gen: Int = 0, uri: Uri?) {
+        val id = generateId()
+        if (uri != null) {
+            val ref = storeRef.child("usersimage/${id}")
+            val t = ref.putFile(uri)
+            t.continueWithTask { task ->
+                if (!task.isSuccessful) {
+                    task.exception?.let {
+                        throw it
+                    }
+                }
+                ref.downloadUrl
+            }.addOnCompleteListener {
+                val url = it.result.toString()
+                userRef.document(Firebase.auth.uid.toString()).update(
+                    mapOf(
+                        "firstname" to f,
+                        "lastname" to l,
+                        "contact" to cont,
+                        "gender" to gen,
+                        "urlImg" to url
+                    )
+                ).addOnSuccessListener {
+                    state.onUpdateUserSuccess(true)
+                }.addOnFailureListener { }
+            }
+        } else {
+            userRef.document(Firebase.auth.uid.toString()).update(
+                mapOf(
+                    "firstname" to f,
+                    "lastname" to l,
+                    "contact" to cont,
+                    "gender" to gen,
+                    "urlImg" to ""
+                )
+            ).addOnSuccessListener {
+                state.onUpdateUserSuccess(true)
+            }.addOnFailureListener { }
+        }
+    }
+
+    fun getSpecificPost(id: String): List<Post> {
+        val posts = mutableListOf<Post>()
+        val postData = mutableListOf<PostData>()
+        state.onGetUsersPosts(StatusEnums.LOADING)
+        postsRef.whereEqualTo("uid", id).limit(20)
+            .get()
+            .addOnSuccessListener { rs ->
+                if (!rs.isEmpty) {
+                    for (doc in rs) {
+                        posts.add(initPost(initPostData(doc.data)))
+                    }
+                     state.onGetUsersPosts(StatusEnums.DONE)
+                } else state.onGetUsersPosts(StatusEnums.EMPTY)
+
+            }.addOnFailureListener {
+                state.onGetUsersPosts(StatusEnums.ERROR)
+            }
+        return posts
     }
 }
 

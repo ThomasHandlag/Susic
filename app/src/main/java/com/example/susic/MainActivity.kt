@@ -1,26 +1,37 @@
 package com.example.susic
 
+import android.Manifest
 import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.PendingIntent
+import android.content.BroadcastReceiver
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
-import android.util.AttributeSet
 import android.util.Log
 import android.view.View
+import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.media.app.NotificationCompat.MediaStyle
+import com.example.susic.data.Artist
+import com.example.susic.data.Track
 import com.example.susic.data.User
 import com.example.susic.databinding.ActivityMainBinding
 import com.example.susic.databinding.HeaderNavBinding
 import com.example.susic.databinding.PlayerFloatBinding
 import com.example.susic.network.DB
-import com.example.susic.network.LOG_TAG
 import com.example.susic.player.*
 import com.example.susic.ui.home.HomeFragment
 import com.example.susic.ui.artist.ArtistFragment
@@ -41,8 +52,48 @@ class MainActivity : AppCompatActivity() {
     private var sBound = false
     private lateinit var mBindingIntent: Intent
     private lateinit var mPlayerControlsPanelBinding: PlayerFloatBinding
-    private val viewModel: SusicViewModel by lazy {
-        ViewModelProvider(this)[SusicViewModel::class.java]
+    private val viewModel: SusicViewModel by viewModels()
+
+    private val aShowPlayer: (track: Track) -> Unit = {
+        with(binding) {
+            player.visibility = View.VISIBLE
+            imgThumb.userImg(it.urlImage)
+            trackTitle.text = getString(R.string.player_title, it.name)
+            closeActionBtn.setOnClickListener {
+                player.visibility = View.GONE
+                mMediaPlayerHolder.pausePlayer()
+                mMediaPlayerHolder.resetPlayer()
+            }
+            mMediaPlayerHolder.setupNotificationPlayer(it.url)
+            prgIndicator.max = mMediaPlayerHolder.sPlayerDuration
+            mMediaPlayerHolder.playPlayer()
+
+            mMediaPlayerHolder.mediaPlayerInterface = mMediaPlayerInterface
+
+            pauseBtn.setOnClickListener { _ ->
+                when (mMediaPlayerHolder.notificationPlayerState) {
+                    PlayerState.PAUSE -> {
+                        mMediaPlayerHolder.playPlayer()
+                    }
+
+                    PlayerState.PLAYING -> {
+                        mMediaPlayerHolder.pausePlayer()
+                    }
+
+                    else -> {
+                        mMediaPlayerHolder.reset()
+                        mMediaPlayerHolder.setupNotificationPlayer(it.url)
+                        mMediaPlayerHolder.playPlayer()
+                    }
+                }
+            }
+            prgIndicator.postDelayed(object : Runnable {
+                override fun run() {
+                    prgIndicator.progress = mMediaPlayerHolder.currentPlayerPosition
+                    prgIndicator.postDelayed(this, 100)
+                }
+            }, 10)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,14 +111,23 @@ class MainActivity : AppCompatActivity() {
                 viewModel.setCurrentViewedUser(u)
                 switchFragment(fragment = it)
             }
+            val showDetail: (fragment: Fragment) -> Unit = { fr ->
+                switchFragment(fr)
+            }
+
             viewModel.iGetCurrentUser()
             startService(intent)
             binding.bottomNavigationView.setOnItemSelectedListener {
                 when (it.itemId) {
-                    R.id.home_page -> switchFragment(HomeFragment().apply { })
-                    R.id.notify_page -> switchFragment(NotifyFragment().apply { })
-                    R.id.settings_page -> switchFragment(SettingsFragment().apply { })
-                    R.id.lib_page -> switchFragment(LibraryFragment().apply { })
+                    R.id.home_page -> {
+                        binding.player.visibility = View.GONE
+                        mMediaPlayerHolder.resetPlayer()
+                        switchFragment(HomeFragment())
+                    }
+
+                    R.id.notify_page -> switchFragment(NotifyFragment())
+                    R.id.settings_page -> switchFragment(SettingsFragment())
+                    R.id.lib_page -> switchFragment(LibraryFragment(aShowPlayer, showDetail))
                     else -> {
                         viewModel.getViewUsers()
                         switchFragment(ArtistFragment(viewDetail))
@@ -87,6 +147,7 @@ class MainActivity : AppCompatActivity() {
                         menuItem.isChecked = true
                         true
                     }
+
                     R.id.prf_btn -> {
                         switchFragment(ProfileFragment())
                         binding.bottomNavigationView.clearFocus()
@@ -94,6 +155,7 @@ class MainActivity : AppCompatActivity() {
                         drawerLayout.close()
                         true
                     }
+
                     R.id.sl_btn -> {
                         menuItem.isChecked = true
                         drawerLayout.close()
@@ -111,11 +173,13 @@ class MainActivity : AppCompatActivity() {
                         switchFragment(SettingsFragment())
                         true
                     }
+
                     R.id.child1 -> {
                         drawerLayout.close()
                         menuItem.isChecked = true
                         true
                     }
+
                     else -> {
                         drawerLayout.close()
                         menuItem.isChecked = true
@@ -136,6 +200,7 @@ class MainActivity : AppCompatActivity() {
                         binding.navigationView.addHeaderView(navBinding.root)
                         navBinding.viewModel = viewModel
                     }
+
                     else -> {}
                 }
             }
@@ -188,7 +253,6 @@ class MainActivity : AppCompatActivity() {
 
     private val mMediaPlayerInterface = object : MediaPlayerInterface {
         override fun onClose() {
-            //finish activity if visible
             finishAndRemoveTask()
         }
 
@@ -206,11 +270,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onStart() {
-            mPlayerControlsPanelBinding.pauseBtn.setIconResource(R.drawable.ic_round_pause_circle_24)
+            binding.pauseBtn.setIconResource(R.drawable.ic_round_pause_circle_24)
         }
 
         override fun onPause() {
-            mPlayerControlsPanelBinding.pauseBtn.setIconResource(R.drawable.ic_round_play_arrow_24)
+            binding.pauseBtn.setIconResource(R.drawable.ic_round_play_arrow_24)
+        }
+
+        override fun onComplete() {
+            binding.pauseBtn.setIconResource(R.drawable.ic_round_play_arrow_24)
         }
     }
+}
+
+class MusicNotificationReceiver : BroadcastReceiver() {
+    override fun onReceive(p0: Context?, p1: Intent?) {
+
+    }
+
 }

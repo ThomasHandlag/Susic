@@ -7,7 +7,7 @@
 
         <variable
             name="viewM"
-            type="com.example.susic.data.PlayerViewModel" />
+            type="com.example.susic.SusicViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -72,7 +72,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
-                                android:layout_marginTop="16dp"
+                                android:layout_marginTop="10dp"
                                 android:text="@string/user_name"
                                 app:ownerName="@{viewM.mainComm.user}"
                                 tools:text="Thomas Mr" />
@@ -83,6 +83,7 @@
                                 android:layout_marginStart="20dp"
                                 android:layout_marginTop="8dp"
                                 android:text="@string/role_title"
+                                android:ellipsize="end"
                                 app:ownerName="@{viewM.mainComm.content}"
                                 tools:text="so good" />
                         </LinearLayout>
@@ -106,14 +107,17 @@
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                          />
 
-                    <ImageView
+                    <ProgressBar
                         android:id="@+id/imageView2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:contentDescription="@string/img_lb"
-                        android:visibility="gone"
-                        android:background="@drawable/loading_animation"
-                        tools:src="@drawable/loading_animation" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
 
                     <LinearLayout
                         android:id="@+id/add_comm"

@@ -3,32 +3,28 @@ package com.example.susic.ui.home
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.susic.R
 import com.example.susic.StatusEnums
+import com.example.susic.SusicViewModel
 import com.example.susic.data.Comments
-import com.example.susic.data.PlayerViewModel
 import com.example.susic.databinding.CommentItemBinding
 import com.example.susic.databinding.CommentSectionBinding
 import com.example.susic.databinding.SettingLayoutBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.textfield.TextInputLayout
 
 class CommentSheet :
     BottomSheetDialogFragment() {
     private lateinit var commentSheet: CommentSectionBinding
-    private val viewModel: PlayerViewModel by lazy {
-        ViewModelProvider(requireActivity())[PlayerViewModel::class.java]
+    private val viewModel: SusicViewModel by lazy {
+        ViewModelProvider(requireActivity())[SusicViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -67,7 +63,7 @@ class CommentSheet :
             commentSheet.comTextEdit.editText?.text?.clear()
             commentSheet.comTextEdit.prefixText = ""
         }
-        val showRep: (com: Comments) -> Unit = {it->
+        val showRep: (com: Comments) -> Unit = { it ->
             viewModel.mainComments(it)
             viewModel.getReplies(it.id)
             val repSheet = ReplySheet()
@@ -84,14 +80,16 @@ class CommentSheet :
                     commentSheet.imageView2.visibility = View.VISIBLE
                     commentSheet.container.visibility = View.GONE
                 }
+
                 StatusEnums.DONE -> {
                     commentSheet.imageView2.visibility = View.GONE
                     commentSheet.container.visibility = View.VISIBLE
                 }
+
                 else -> {
                     with(commentSheet.imageView2) {
                         visibility = View.VISIBLE
-                        setImageResource(R.drawable.ic_round_signal_wifi_off_24)
+//                        setImageResource(R.drawable.ic_round_signal_wifi_off_24)
                     }
                     commentSheet.container.visibility = View.GONE
                 }
@@ -142,10 +140,11 @@ class CommentViewHolder(private val binding: CommentItemBinding) :
         binding.comment = comment
         if (comment.tag == "rep" || comment.repCount == 0) {
             binding.openRepBtn.visibility = View.INVISIBLE
-        }
-        else binding.openRepBtn.text = context?.getString(R.string.num_rep, comment.repCount.toString())
+        } else binding.openRepBtn.text =
+            context?.getString(R.string.num_rep, comment.repCount.toString())
         binding.openRepBtn.setOnClickListener {
-            showRep(comment) }
+            showRep(comment)
+        }
         binding.likeBtn.setOnClickListener {
             val n = comment.like.toInt() + 1
             binding.likeBtn.setIconResource(R.drawable.ic_round_thumb_up_24)
@@ -153,6 +152,7 @@ class CommentViewHolder(private val binding: CommentItemBinding) :
             binding.likeBtn.isClickable = false
             like(comment.id, comment.like)
         }
+        //set rep data
         binding.writeComBtn.setOnClickListener {
             writeComment(comment.id, comment.user)
         }
@@ -178,8 +178,8 @@ class CommentDiff : DiffUtil.ItemCallback<Comments>() {
 
 class ReplySheet : BottomSheetDialogFragment() {
     private lateinit var bind: SettingLayoutBinding
-    private val viewModel: PlayerViewModel by lazy {
-        ViewModelProvider(requireActivity())[PlayerViewModel::class.java]
+    private val viewModel: SusicViewModel by lazy {
+        ViewModelProvider(requireActivity())[SusicViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -191,7 +191,7 @@ class ReplySheet : BottomSheetDialogFragment() {
         val like: (key: String, like: String) -> Unit = { it, like ->
             viewModel.like(it, like)
         }
-        val writeComment: (id: String, name: String) -> Unit = { id, name ->
+        val writeComment: (id: String, name: String) -> Unit = { _, _ ->
 
         }
         val showRep: (it: Comments) -> Unit = {}
@@ -206,14 +206,16 @@ class ReplySheet : BottomSheetDialogFragment() {
                     bind.imageView2.visibility = View.VISIBLE
                     bind.rec.visibility = View.GONE
                 }
+
                 StatusEnums.DONE -> {
                     bind.imageView2.visibility = View.GONE
                     bind.rec.visibility = View.VISIBLE
                 }
+
                 else -> {
                     with(bind.imageView2) {
                         visibility = View.VISIBLE
-                        setImageResource(R.drawable.ic_round_signal_wifi_off_24)
+//                        setImageResource(R.drawable.ic_round_signal_wifi_off_24)
                     }
                     bind.rec.visibility = View.GONE
                 }

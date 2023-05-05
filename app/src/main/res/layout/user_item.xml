@@ -43,6 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/user_name"
+                    android:textAlignment="center"
                     app:layout_constraintBottom_toTopOf="@id/btn"
                     app:ownerName="@{user.firstname + ' ' + user.lastname}"
                     tools:text="Thomas Mr" />

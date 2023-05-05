@@ -5,6 +5,8 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
+        android:id="@+id/pl_container"
+        android:visibility="gone"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -63,7 +65,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/ic_launcher"
-                        tools:src="@drawable/ic_launcher" />
+                        tools:src="@drawable/ic_launcher"
+                        android:contentDescription="@string/img_lb" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/pause_btn"

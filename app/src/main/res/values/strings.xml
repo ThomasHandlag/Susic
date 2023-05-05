@@ -66,7 +66,7 @@
     <string name="upload_lb">Upload</string>
 
     <string name="player_title" translatable="false">%s</string>
-    <string name="owner_title" translatable="false">by %s</string>
+    <string name="owner_title" translatable="false">by twenty one pilots</string>
     <string name="searchbar_hint">Search</string>
 
     <string name="notification_title" translatable="false">Susic</string>
@@ -95,7 +95,7 @@
     <string name="archive_lb" translatable="false">%s</string>
     <string name="fr_lb">friends</string>
     <string name="post_lb">posts</string>
-    <string name="song_lb">songs</string>
+    <string name="song_lb">Songs</string>
     <string name="view_prf_lb">View profile</string>
     <string name="num_like" translatable="false">%s</string>
     <string name="num_rep" translatable="false">%s</string>
@@ -105,5 +105,10 @@
     <string name="gender_lb">Gender</string>
     <string name="fn_lb">First name</string>
     <string name="ln_lb">Last name</string>
-
+    <string name="channel_name" translatable="false">Susic Player</string>
+    <string name="channel_des" translatable="false">Player</string>
+    <string name="friend_lb">Friends</string>
+    <string name="empty_lb">Nothing to show</string>
+    <string name="nof_user_update">Changes saved</string>
+    <string name="failed_upload">Changes can\'t saved</string>
 </resources>

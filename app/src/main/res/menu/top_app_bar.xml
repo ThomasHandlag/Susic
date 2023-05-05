@@ -22,6 +22,7 @@
             android:title="@string/setting_lb" /> <item
             android:id="@+id/view_prf_btn"
             android:icon="@drawable/ic_launcher_foreground"
+        android:visible="false"
             android:title="@string/view_prf_lb" />
         <item
             android:id="@+id/item1"

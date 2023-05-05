@@ -24,7 +24,8 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="10dp"
-            app:layout_constraintBottom_toTopOf="@id/grid_view">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="20dp">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="100dp"
@@ -65,10 +66,10 @@
                     android:textColor="#BFE7FA"
                     android:textSize="16dp"
                     android:textStyle="bold"
-                    app:ownerName="@{String.valueOf(viewM.currentViewUser.numFr)}"
                     tools:text="16k" />
 
                 <TextView
+                    android:id="@+id/num_posts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -77,18 +78,16 @@
                     android:textColor="#BFE7FA"
                     android:textSize="16dp"
                     android:textStyle="bold"
-                    app:ownerName="@{String.valueOf(viewM.currentViewUser.numPost)}"
                     tools:text="1045" />
 
                 <TextView
+                    android:id="@+id/num_songs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/num_song"
                     android:textColor="#BFE7FA"
                     android:textSize="16dp"
-
                     android:textStyle="bold"
-                    app:ownerName="@{String.valueOf(viewM.currentViewUser.numSong)}"
                     tools:text="119" />
             </LinearLayout>
 
@@ -126,9 +125,51 @@
             android:id="@+id/grid_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            android:paddingVertical="10dp"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/action_btn"
-            app:layout_constraintTop_toBottomOf="@id/prf" />
+            app:layout_constraintTop_toBottomOf="@+id/prf"
+            app:spanCount="3" />
+
+        <ProgressBar
+            android:id="@+id/prg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_round_signal_wifi_off_24"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:text="@string/empty_lb"
+            android:textAlignment="center"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
 
         <LinearLayout
             android:id="@+id/action_btn"
@@ -138,6 +179,7 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_fr_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/rq_lb" />
@@ -145,12 +187,14 @@
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/cancel_lb" />
+                android:text="@string/cancel_lb"
+                android:visibility="gone" />
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/un_fr_lb" />
+                android:text="@string/un_fr_lb"
+                android:visibility="gone" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

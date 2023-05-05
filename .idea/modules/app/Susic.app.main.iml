@@ -2,7 +2,7 @@
 <module external.linked.project.id=":app:main" external.linked.project.path="$MODULE_DIR$/../../../app" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.type="sourceSet" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="kotlin-language" name="Kotlin">
-      <configuration version="5" platform="JVM 1.8" allPlatforms="JVM [1.8]" useProjectSettings="false">
+      <configuration version="5" platform="JVM 18" allPlatforms="JVM [18]" useProjectSettings="false">
         <compilerSettings>
           <option name="additionalArguments" value="-Xallow-no-source-files" />
         </compilerSettings>
@@ -15,138 +15,140 @@
             <stringArg name="classpath">
               <args>
                 <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/5a5b472aadb7075a69139a4db86292e0/transformed/databinding-runtime-7.2.2-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/ea63497d7c76d0f0093f827bf583e10c/transformed/databinding-adapters-7.2.2-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/androidx.databinding/databinding-common/7.2.2/cb53bd625b7a99cf218f46634d07d1886441288/databinding-common-7.2.2.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/0b5f0c11c60001412774517f9294b137/transformed/databinding-ktx-7.2.2-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/2a08cad8f8ae074546170a3d1f46a0a8/transformed/navigation-ui-ktx-2.5.3-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/57f2e7f3eb3af83d4cdba8a10bb83594/transformed/navigation-ui-2.5.3-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/690226ace421d089c5550d4fc8ce0146/transformed/material-1.8.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/a3d5a83e61600743c791f9f3a04948e0/transformed/play-services-auth-20.4.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/15850923398f5550e6354a564602f34a/transformed/preference-1.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/0a5f502d90306132a84093e9d9deea29/transformed/appcompat-1.6.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/e0c9f66e28b6fb34081683b5001de696/transformed/glide-4.12.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/2b3df3c7bfca0b743d0bee91144310ca/transformed/firebase-auth-ktx-21.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/27ea3e34ee2566c460c0bb5979be53f8/transformed/firebase-auth-21.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/3117035a380591112ced7c58b00de69d/transformed/play-services-auth-api-phone-18.0.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/0dbd5dd85feb26db6b329558fb90cd9e/transformed/play-services-auth-base-18.0.4-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/92879c7cf37871fd1fe8fae1fac27c2e/transformed/play-services-fido-19.0.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/401c1c87ff89edcc84c65e6dbb3208ca/transformed/firebase-firestore-ktx-24.4.4-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/15f4b4f6e2538ce748de845a96bd72eb/transformed/firebase-firestore-24.4.4-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/eee753242487a9c5979a038d3c73d4a5/transformed/firebase-database-ktx-20.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/036b7034511aad4dad1014e2d488038d/transformed/firebase-database-20.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/91f9eb17282a96d656a44e2a026fcc47/transformed/firebase-storage-ktx-20.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/90f8053980e985e26fabcc567a82e48a/transformed/firebase-storage-20.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/63b006105d509061f23bfe296819e7b9/transformed/play-services-safetynet-17.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/cf38e805d7541fff071bc3cdea89467b/transformed/firebase-database-collection-18.0.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/554d945e26e68c567a4e2d1ad0e07a1e/transformed/firebase-appcheck-interop-16.1.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/77d19326d7c0be7c48e3096b7eb263ac/transformed/play-services-base-18.0.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/33ebe329b2492f21c5c2065589ccfee4/transformed/firebase-analytics-ktx-21.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/5340bbe41a0bf95f2304e33fdcc88f22/transformed/firebase-common-ktx-20.3.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/cd995d367cb7df24eb05b691a29df8d6/transformed/firebase-auth-interop-20.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/cfedc095380411871d970ad8a21abe6f/transformed/firebase-analytics-21.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/51216eadb00d9e56e0621307b6db4dc6/transformed/play-services-measurement-api-21.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/ce971cb3914eb62858df0636e8e1024c/transformed/firebase-installations-17.1.3-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/b1531629d7cbee068ab15242cd739828/transformed/firebase-common-20.3.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/8d5f167a22ddebd47d361bcb9aace088/transformed/databinding-runtime-8.0.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/b0bc08779c0525bb6a77727df540e67c/transformed/databinding-adapters-8.0.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/androidx.databinding/databinding-common/8.0.1/84ed411631d2c4113f4ad992669fe3f50a83f072/databinding-common-8.0.1.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/99bc8962a4c578efa2fc426f17fe2c30/transformed/databinding-ktx-8.0.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/e0f51d3c1fa5ede47dc42da084562d97/transformed/navigation-ui-ktx-2.5.3-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/55e332af269c1478657dd5fef74c0979/transformed/navigation-ui-2.5.3-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/171ce0f484d3d2132360e65532c5c085/transformed/material-1.9.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/61c9338a90baf2af83ac28d18ba68e39/transformed/play-services-auth-20.5.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/5984a2b8fe04ca4902381a5da8a46c78/transformed/preference-ktx-1.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/37870974c54ecc7e23705da2882c610c/transformed/preference-1.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/6f84ec0986a601627775b24c09fbe279/transformed/appcompat-1.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/387365522a15b99c06bad00ae9719667/transformed/glide-4.12.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/c731e5979f11d2194a117dc85b15afce/transformed/firebase-auth-ktx-21.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/78429409fbc4e20982115160d1c559e0/transformed/firebase-auth-21.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/40a373b0ec06ded55c57ce2c323325ab/transformed/play-services-auth-api-phone-18.0.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/8d73a70118e8a71c81fa8f1536378800/transformed/play-services-auth-base-18.0.4-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/7da803440d1bbe681f22969beb8eeaf5/transformed/play-services-fido-20.0.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/5e76042c330c08a209f54e32a9aefb33/transformed/firebase-firestore-ktx-24.4.4-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/ef99b269e6998713238f572e7a9b33b4/transformed/firebase-firestore-24.4.4-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/60cb6552e34a690ed00a5677a5b64c67/transformed/firebase-database-ktx-20.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/b1abc6ca66ee2fc8f96d66b1df0d6350/transformed/firebase-database-20.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/ef1508240f7216be2ee052656d89c287/transformed/firebase-storage-ktx-20.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/222a45332f4a5cf8469cd0762e0e9c09/transformed/firebase-storage-20.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/c3441b9c5ad8ec452a170cbeea6f242e/transformed/play-services-safetynet-17.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/14a2dd5faee6b4c56a3ef4c4ac742fa1/transformed/firebase-database-collection-18.0.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/ab38a489e86049953b077d5258b24f56/transformed/firebase-appcheck-interop-16.1.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/b597b0af48a188bca23f6fcc31b2842c/transformed/play-services-base-18.0.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/f9fec5d99efafb6b3bd00e2076f79cb4/transformed/firebase-analytics-ktx-21.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/6c7d0007c26c0250f49ab40164a7bf41/transformed/firebase-common-ktx-20.3.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/c407cbd30345bd79f10868db45a0eaa6/transformed/firebase-auth-interop-20.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/179b0e54271800191e32c46bea04e7af/transformed/firebase-analytics-21.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/b2dcbdd84f1c38b13ced1fcc6d071670/transformed/play-services-measurement-api-21.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/24a6a65799d8877b17a27543c116aa40/transformed/firebase-installations-17.1.3-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/94024bab449427cd0f3248b9bfa82f02/transformed/firebase-common-20.3.1-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm/1.6.4/2c997cd1c0ef33f3e751d3831929aeff1390cb30/kotlinx-coroutines-core-jvm-1.6.4.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-play-services/1.6.4/e8e5e0dbe20eadc35a0eb112bcc1b2089768c906/kotlinx-coroutines-play-services-1.6.4.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/933894b619e2dd3cd291b1c35fea1854/transformed/firebase-installations-interop-17.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/bdcbda1f208cb1364829c0e0f656cb80/transformed/play-services-tasks-18.0.2-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/3a9dfad35b812402c646a3f3215247be/transformed/play-services-measurement-21.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/9458cf92359c9ca92f9a669b0b9f169a/transformed/play-services-measurement-sdk-21.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/97821605cfbb482aef6070861c51e9a4/transformed/play-services-measurement-impl-21.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/10f23d7a348d13e6b849c645a43bf9a3/transformed/play-services-ads-identifier-18.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/8153850e2eb7cb842024ed1ab3c4db70/transformed/play-services-measurement-sdk-api-21.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/9bf1822748a6f5452386448e0a843bd3/transformed/play-services-measurement-base-21.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/33febc62cdf71ce89c173de7b2151156/transformed/play-services-stats-17.0.2-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/4f81a7ed10282663d5454377cf2ceef4/transformed/firebase-measurement-connector-19.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/fe45ee0261762a2d1f82c6d95c2130dd/transformed/play-services-basement-18.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/8bbe6a5d9af14ca92c2e7861c00d04e2/transformed/viewpager2-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/133692dfb575da828613771880a2690a/transformed/navigation-fragment-ktx-2.5.3-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/b49fe576e33e8a0a6c5b48bc99974bad/transformed/navigation-fragment-2.5.3-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/fd8025ed4649710651b6a74048960682/transformed/fragment-ktx-1.5.4-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/fb0f77220c611561b100949ddbd86644/transformed/fragment-1.5.4-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/493780cf3c90e53eeceac4c9e2985407/transformed/dynamicanimation-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/7d4f64090006f4e56d0bb0c987e9d019/transformed/legacy-support-core-utils-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/4cc6cf1a6def8b9cc2f1b568dcc03f55/transformed/loader-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/82264f41b60aecfc527372ab2ca68001/transformed/navigation-runtime-ktx-2.5.3-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/36e1ea4f757f9514fb7192e56245fc9b/transformed/navigation-runtime-2.5.3-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/4db3ef1ef3112f4f7aa0ed38332edd4e/transformed/activity-ktx-1.6.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/1855ab4e7be359529aac036544d4c9be/transformed/activity-1.6.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/de1196b6d4e9eb5156eb002e83f4b328/transformed/navigation-common-ktx-2.5.3-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/6c43a720a192f2904c9ab8401516b4ce/transformed/navigation-common-2.5.3-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/47648932fb6207c3ef9379561756eb8e/transformed/lifecycle-viewmodel-savedstate-2.6.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/81faa8ec96315fcf2f639b4ddee1e525/transformed/lifecycle-livedata-core-2.6.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.6.0/10f354fdb64868baecd67128560c5a0d6312c495/lifecycle-common-2.6.0.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/4962853ee5e625751cd2eba968a29928/transformed/lifecycle-livedata-core-ktx-2.6.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/8223fd950f1e63f922159f53cedad11b/transformed/lifecycle-viewmodel-2.6.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/5793e95c638dcded2411d182febf1d73/transformed/lifecycle-service-2.6.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/cc937f1fd1d68bd11f6d030bdeeecc34/transformed/lifecycle-process-2.6.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/bec6c0d9543957b2bb58014b12d5dcd0/transformed/lifecycle-livedata-2.6.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/43c4a36fb80a88b3eee32e569d2079c7/transformed/lifecycle-runtime-ktx-2.6.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/4b4ae20aef0c71504b35e7570cc07827/transformed/core-ktx-1.9.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/926f1e9aaaecdd6c474a1eab1fec7ef5/transformed/media-1.6.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/6f19abd5fbe736c41f19b73e86e83e04/transformed/appcompat-resources-1.6.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/c5f6727c488f75a00eefba733dce2f36/transformed/drawerlayout-1.1.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/88df40ad7e88f61930dd27f14222fdb6/transformed/coordinatorlayout-1.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/c6f72e61747fb7af393604b79049e291/transformed/recyclerview-1.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/869b6f5a6cf73eec5c9a07cc8c890fe3/transformed/transition-1.4.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/48184d75947a7d34cb968e36e95c1693/transformed/vectordrawable-animated-1.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/e117892c98dc629dfae206138d20c6b0/transformed/vectordrawable-1.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/3532dbdcaedc2454907c24ba716667ab/transformed/browser-1.4.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/4fae080a86a412cf2b8ff8fe53b3f35d/transformed/slidingpanelayout-1.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/bbc977350c9fd88831817862301c0403/transformed/viewpager-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/b657dc15babfae2c6eeef9e8a1aa2906/transformed/customview-1.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/e9cd9884097b90c006907dfc39bfe021/transformed/core-1.9.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/023589eb97273da612e7d9d213e8dc50/transformed/lifecycle-runtime-2.6.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/b0810df15bb5819443e82fd741a5bb85/transformed/lifecycle-livedata-ktx-2.6.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/81f506bd3b3dd993b7217d0073c05075/transformed/lifecycle-viewmodel-ktx-2.6.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/dec8cfd0750b7cac24811a05007046f4/transformed/firebase-installations-interop-17.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/605f3285776ce9daf85f381ed766169a/transformed/play-services-tasks-18.0.2-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/7571f6a683264907e6260043ceedfa0c/transformed/play-services-measurement-21.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/15d9a791281cc4fa5630fba89a67d780/transformed/play-services-measurement-sdk-21.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/f435f5a3bf661375935a155ad4929c43/transformed/play-services-measurement-impl-21.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/4c320ff4ec83c1461068d6bb8bd05b0e/transformed/play-services-ads-identifier-18.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/a421886b073a7002d4e9b873d2f16c9d/transformed/play-services-measurement-sdk-api-21.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/af2bc027fecf020f469f776d532f5dc9/transformed/play-services-measurement-base-21.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/c0a9e392b6cc45589db88158597ff373/transformed/play-services-stats-17.0.2-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/181c4a534de9abe254c7937693cfc52e/transformed/firebase-measurement-connector-19.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/ef1d263212bcfc1b753cd91b215ad20d/transformed/play-services-basement-18.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/92b5bd74e594d0cd3d55b5db319a580e/transformed/viewpager2-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/f75fa7cabc453c592d930a1d979aadc4/transformed/navigation-fragment-ktx-2.5.3-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/4b0669f992488f7e9145709145889410/transformed/navigation-fragment-2.5.3-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/0a0978075add64a92715700593ac5fd2/transformed/fragment-ktx-1.5.4-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/4d64b6ea6afd83c321bed5478774f89a/transformed/fragment-1.5.4-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/c8293ba1c173f4c36e698d28283f7723/transformed/dynamicanimation-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/972198060c8bcd24bc872285f4b8a7b0/transformed/legacy-support-core-utils-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/b41d55424b1cc7ffa5297deaae325e8b/transformed/loader-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/9adf42dfe3230bb2461eb6cc12ddcc5f/transformed/navigation-runtime-ktx-2.5.3-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/07dafef0a6f98596d5a7452bdadd805a/transformed/navigation-runtime-2.5.3-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/e0393372f740007532c4c495d716b03d/transformed/activity-ktx-1.6.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/a998bddca4efafb62eed1b36f57a6fe8/transformed/activity-1.6.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/2cb4b84eae2852fd9ca4308e41a214cd/transformed/navigation-common-ktx-2.5.3-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/ef29952115ddd2f4f55601e1e67df885/transformed/navigation-common-2.5.3-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/54b876a2de4d2bf483249a674d0bb611/transformed/lifecycle-viewmodel-savedstate-2.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/b890cd01641a6ac114f64e0fec64d358/transformed/lifecycle-livedata-core-2.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.6.1/10f354fdb64868baecd67128560c5a0d6312c495/lifecycle-common-2.6.1.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/d73e523813acffe9c16b7aadb40ec271/transformed/lifecycle-livedata-core-ktx-2.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/14a589baface73f0c4d38574064b0d8b/transformed/lifecycle-viewmodel-2.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/59cb69b98510718d1b663522fa46ef5c/transformed/lifecycle-service-2.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/3605f31e8c0e7bb233387c6c45c8601e/transformed/lifecycle-process-2.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/3c421188e00347d5c170dd35987e4ae7/transformed/lifecycle-livedata-2.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/e95e065a43b77f67b13a591b80713dc0/transformed/lifecycle-runtime-ktx-2.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/4f86fd51c466063ffc8dea2989735d20/transformed/core-ktx-1.10.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/28abcf6f3e3410111b1b14962d19a472/transformed/media-1.6.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/5bda254dc681ae565104801cb3598789/transformed/swiperefreshlayout-1.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/ec894dc185df17839dc01a5d480f2de4/transformed/appcompat-resources-1.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/300cc12fd5466b1adf017f685c2280ff/transformed/drawerlayout-1.1.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/bdde0c1baee4d184ceaa3e2697df1b3e/transformed/coordinatorlayout-1.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/3fcb419e0a5ab1099568de13101e2f0d/transformed/recyclerview-1.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/128731d1924550ff85db9195626dfae6/transformed/transition-1.4.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/df7d1b3b826066ebb1aa26f449a02fa8/transformed/vectordrawable-animated-1.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/ac39cb96da7c15d504b834ac93d15efc/transformed/vectordrawable-1.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/468344450169a79b4cd067a4b46c195e/transformed/browser-1.4.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/46bc2208a9625692b0b7eccef52157d2/transformed/slidingpanelayout-1.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/e12591e47a4a71ac6f6de747da5ea035/transformed/viewpager-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/3614b166aa23b9a44069fde7ce174f33/transformed/customview-1.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/2a17a707afa3b83acf83e34c049857f9/transformed/core-1.10.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/0d17063e2454d038642a6cd880c1c69a/transformed/lifecycle-runtime-2.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/f9a411f142c8e29f26c668fa6cf428fc/transformed/lifecycle-livedata-ktx-2.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/644100a4c67a918dca46b44227f0fa7e/transformed/lifecycle-viewmodel-ktx-2.6.1-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-android/1.6.4/f955fc8b2ad196e2f4429598440e15f7492eeb2b/kotlinx-coroutines-android-1.6.4.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.8.10/7c002ac41f547a82e81dfebd2a20577a738dbf3f/kotlin-stdlib-jdk8-1.8.10.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/8a108298a2bd0770e76af340dd968aad/transformed/versionedparcelable-1.1.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/eb67b5b7184a4b1f35839b6122848cfc/transformed/versionedparcelable-1.1.1-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/androidx.collection/collection-ktx/1.1.0/f807b2f366f7b75142a67d2f3c10031065b5168/collection-ktx-1.1.0.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/androidx.collection/collection/1.1.0/1f27220b47669781457de0d600849a5de0e89909/collection-1.1.0.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/b58bf6436cc77fdd721c565fb778d947/transformed/viewbinding-7.2.2-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/5662c7aa550101450ee220aa360bfa11/transformed/firebase-components-17.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/da4508f0c0bd742ad89135c5512dde09/transformed/cursoradapter-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/1c580ea2e941fa79d19e98896b63bf9c/transformed/savedstate-ktx-1.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/ca236c8792d173ef4da2e31ef1076575/transformed/savedstate-1.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/3fecabc69d497f882cbc2124657bf70e/transformed/cardview-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/0883eab90d7ecdd3dd853be847c06b29/transformed/gifdecoder-4.12.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/28dc7c060b29800d8ce3237a950a7f89/transformed/exifinterface-1.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/86f97c355a13a7d3d61120e001bb06af/transformed/core-runtime-2.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/b727bd2da4e61db31e35517d4996dfed/transformed/viewbinding-8.0.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/db485bd102ccf30e1a274a06e75e1d67/transformed/firebase-components-17.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/84277263bf8346d0a120815972bdcfa3/transformed/cursoradapter-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/913e8a23160f381243cf3fef3a9ecfeb/transformed/savedstate-ktx-1.2.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/d6c76b95216af9f9c6f2f2951017698d/transformed/savedstate-1.2.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/109354f18a873bda79bd2bff0e688860/transformed/cardview-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/7085ccdb74c325753c8651d00766a97b/transformed/interpolator-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/d87920aecdc4f8edf8d688c7456b86b2/transformed/gifdecoder-4.12.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/97a9fbb6864d0c66ea905f2706348146/transformed/exifinterface-1.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/8e28e0d1ff4bb9a119dd24a08ed34820/transformed/core-runtime-2.2.0-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.2.0/5e1b8b81dfd5f52c56a8d53b18ca759c19a301f3/core-common-2.2.0.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/0212a3a63e9ec02ce55ac867aceb67c2/transformed/localbroadcastmanager-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/e78532bd250e965013f1606e0af55235/transformed/localbroadcastmanager-1.0.0-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/androidx.concurrent/concurrent-futures/1.1.0/50b7fb98350d5f42a4e49704b03278542293ba48/concurrent-futures-1.1.0.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/84bd771be9001d9d7ac214f68368ac1e/transformed/interpolator-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/a1694d475f7d136d3bd8af50ab459205/transformed/documentfile-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/ecdca865129bfed92e2418e82c1f326c/transformed/print-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/131205152e8eb55fbae2bc9e146fb67e/transformed/documentfile-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/89e5e8026d9bfa7cfdb2131610e461d8/transformed/print-1.0.0-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/androidx.annotation/annotation-jvm/1.6.0/a7257339a052df0f91433cf9651231bbb802b502/annotation-jvm-1.6.0.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.8.10/cb726a23c808a850a43e7d6b9d1ba91b02fe9f05/kotlin-stdlib-jdk7-1.8.10.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/578e80cb6b57e6f7a57ced97dffc2961/transformed/annotation-experimental-1.3.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/81117964609eca80bd6a548a04467f7a/transformed/annotation-experimental-1.3.0-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.8.10/6d5560a229477df9406943d5feda5618e98eb64c/kotlin-stdlib-1.8.10.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.8.10/a61b182458550492c12aee66157d7b524a63a5ec/kotlin-stdlib-common-1.8.10.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-stub/1.52.1/16726293bd4430fab8deb37b1ea2ddf8e69b85de/grpc-stub-1.52.1.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/31.1-android/9222c47cc3ae890f07f7c961bbb3cb69050fe4aa/guava-31.1-android.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/b421526c5f297295adef1c886e5246c39d4ac629/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/24faf64f53d005b48fc149aefce98b89/transformed/startup-runtime-1.1.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/eaf9080bbeac2f212aa74d531755241d/transformed/startup-runtime-1.1.1-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-annotations/16.2.0/ba0806703ca285d03fa9c888b5868f101134a501/firebase-annotations-16.2.0.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-protobuf-lite/1.52.1/e50372c825b3b60a9c1c83895a8ac2209578260b/grpc-protobuf-lite-1.52.1.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-okhttp/1.52.1/aeef45c692943d6e5b5d6267dc826f3cec770437/grpc-okhttp-1.52.1.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/e8c9008fefc56c0bdd0c00bf94a3fa0f/transformed/grpc-android-1.52.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/b82276b2dcea62d68e1bea4089fe8f4f/transformed/grpc-android-1.52.1-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-core/1.52.1/c80b4701b0bef206b7208f4d3d941b21b527a311/grpc-core-1.52.1.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-api/1.52.1/250130924e11e3a0dfb5f508130940a1729d497c/grpc-api-1.52.1.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.15.0/38c8485a652f808c8c149150da4e5c2b0bd17f9a/error_prone_annotations-2.15.0.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/69632cf05b48057e8eb399c6e427fb72/transformed/protolite-well-known-types-18.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/d2a29c1fb25bed63cc96a1826eeb4374/transformed/protolite-well-known-types-18.0.0-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/com.google.protobuf/protobuf-javalite/3.21.7/82b692be08383107fd1c6d44474b56df411edd27/protobuf-javalite-3.21.7.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-context/1.52.1/4da95b74359b2dfdd5d85eee3b4682a3e720261c/grpc-context-1.52.1.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/25ea2e8b0c338a877313bd4672d3fe056ea78f0d/jsr305-3.0.2.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.1/1dcf1de382a0bf95a3d8b0849546c88bac1292c9/failureaccess-1.0.1.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.12.0/d5692f0526415fcc6de94bb5bfbd3afd9dd3b3e5/checker-qual-3.12.0.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/1.3/ba035118bc8bac37d7eff77700720999acd9986d/j2objc-annotations-1.3.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/176a61ba655541c15a494a1902b0f9cf/transformed/constraintlayout-2.1.4-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/71a04e4b8d8779352d8cdb50757ef0ad/transformed/constraintlayout-2.1.4-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.12.0/6d44c9103551e3ff51f00ac26077c143a8fb74f9/disklrucache-4.12.0.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/annotations/4.12.0/298d793db124809d74ad9a90de5eddc408898c84/annotations-4.12.0.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Android_SDK/platforms/android-33/android.jar</arg>
@@ -154,12 +156,13 @@
               </args>
             </stringArg>
             <stringArg name="destination" arg="$MODULE_DIR$/../../../app/build/tmp/kotlin-classes/debug" />
-            <stringArg name="jvmTarget" arg="1.8" />
+            <stringArg name="jvmTarget" arg="18" />
             <stringArg name="moduleName" arg="app_debug" />
             <stringArg name="apiVersion" arg="1.8" />
             <stringArg name="languageVersion" arg="1.8" />
           </stringArguments>
           <arrayArguments>
+            <arrayArg name="friendPaths" />
             <arrayArg name="pluginClasspaths">
               <args>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-compiler-embeddable/1.8.10/b0757fd774344d54ce93f5ad6c30ba1c1731c8ff/kotlin-compiler-embeddable-1.8.10.jar</arg>
@@ -181,37 +184,29 @@
     <facet type="android" name="Android">
       <configuration>
         <option name="SELECTED_BUILD_VARIANT" value="debug" />
-        <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
-        <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
-        <afterSyncTasks>
-          <task>generateDebugSources</task>
-        </afterSyncTasks>
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
-        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../app/src/main/res;file://$MODULE_DIR$/../../../app/src/debug/res;file://$MODULE_DIR$/../../../app/build/generated/res/google-services/debug;file://$MODULE_DIR$/../../../app/build/generated/res/rs/debug;file://$MODULE_DIR$/../../../app/build/generated/res/resValues/debug" />
-        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../app/src/androidTest/res;file://$MODULE_DIR$/../../../app/src/androidTestDebug/res;file://$MODULE_DIR$/../../../app/build/generated/res/rs/androidTest/debug;file://$MODULE_DIR$/../../../app/build/generated/res/resValues/androidTest/debug" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../app/src/main/res;file://$MODULE_DIR$/../../../app/src/debug/res;file://$MODULE_DIR$/../../../app/build/generated/res/google-services/debug;file://$MODULE_DIR$/../../../app/build/generated/res/resValues/debug" />
+        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="true">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_18">
+    <output url="file://$MODULE_DIR$/../../../app/build/intermediates/javac/debug/classes" />
+    <output-test url="file://$MODULE_DIR$/../../../app/build/intermediates/javac/debugUnitTest/classes" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../../app/build/generated/aidl_source_output_dir/debug/out" />
     <content url="file://$MODULE_DIR$/../../../app/build/generated/ap_generated_sources/debug/out">
       <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
     </content>
-    <content url="file://$MODULE_DIR$/../../../app/build/generated/data_binding_trigger/debug">
-      <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/data_binding_trigger/debug" isTestSource="false" generated="true" />
-    </content>
-    <content url="file://$MODULE_DIR$/../../../app/build/generated/renderscript_source_output_dir/debug/out" />
     <content url="file://$MODULE_DIR$/../../../app/build/generated/res/google-services/debug">
       <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/res/google-services/debug" type="java-resource" />
     </content>
     <content url="file://$MODULE_DIR$/../../../app/build/generated/res/resValues/debug">
       <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/res/resValues/debug" type="java-resource" />
     </content>
-    <content url="file://$MODULE_DIR$/../../../app/build/generated/res/rs/debug" />
     <content url="file://$MODULE_DIR$/../../../app/build/generated/source/buildConfig/debug">
       <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
     </content>
@@ -219,6 +214,7 @@
       <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/source/kapt/debug" isTestSource="false" generated="true" />
     </content>
     <content url="file://$MODULE_DIR$/../../../app/build/generated/source/kaptKotlin/debug">
+      <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/source/kaptKotlin/debug" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/source/kaptKotlin/debug" isTestSource="false" generated="true" />
     </content>
     <content url="file://$MODULE_DIR$/../../../app/src/debug" />
@@ -228,13 +224,22 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 33, extension level 3 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Gradle: androidx.databinding:databinding-common:7.2.2" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.databinding:databinding-common:8.0.1" level="project" />
+    <orderEntry type="module-library">
+      <library name="Gradle: kaptGeneratedClasses">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../../../app/build/tmp/kapt3/classes/debug" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Gradle: androidx.annotation:annotation-jvm:1.6.0" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.8.10" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.8.10" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
     <orderEntry type="library" name="Gradle: androidx.arch.core:core-common:2.2.0" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.6.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.6.1" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10" level="project" />
@@ -261,37 +266,37 @@
     <orderEntry type="library" name="Gradle: io.grpc:grpc-core:1.52.1" level="project" />
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:disklrucache:4.12.0" level="project" />
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:annotations:4.12.0" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.databinding:databinding-runtime:7.2.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.databinding:viewbinding:7.2.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-runtime:2.6.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.databinding:databinding-adapters:7.2.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.databinding:databinding-ktx:7.2.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-runtime-ktx:2.6.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata:2.6.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.databinding:databinding-runtime:8.0.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.databinding:viewbinding:8.0.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-runtime:2.6.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.databinding:databinding-adapters:8.0.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.databinding:databinding-ktx:8.0.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-runtime-ktx:2.6.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata:2.6.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.arch.core:core-runtime:2.2.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-core:2.6.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-process:2.6.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-core:2.6.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-process:2.6.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.startup:startup-runtime:1.1.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-service:2.6.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-viewmodel:2.6.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-service:2.6.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-viewmodel:2.6.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-auth-ktx:21.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-auth:21.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.browser:browser:1.4.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.core:core:1.9.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.core:core:1.10.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.annotation:annotation-experimental:1.3.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.versionedparcelable:versionedparcelable:1.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.fragment:fragment:1.5.4@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.activity:activity:1.6.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.core:core-ktx:1.9.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.savedstate:savedstate:1.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.core:core-ktx:1.10.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.savedstate:savedstate:1.2.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.loader:loader:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.viewpager:viewpager:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.customview:customview:1.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-auth-api-phone:18.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-base:18.0.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-basement:18.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-basement:18.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-tasks:18.0.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-safetynet:17.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-auth-interop:20.0.0@aar" level="project" />
@@ -302,9 +307,9 @@
     <orderEntry type="library" name="Gradle: androidx.navigation:navigation-fragment:2.5.3@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.fragment:fragment-ktx:1.5.4@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.activity:activity-ktx:1.6.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.savedstate:savedstate-ktx:1.2.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-core-ktx:2.6.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.savedstate:savedstate-ktx:1.2.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-core-ktx:2.6.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.navigation:navigation-runtime:2.5.3@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.navigation:navigation-common:2.5.3@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.slidingpanelayout:slidingpanelayout:1.2.0@aar" level="project" />
@@ -313,7 +318,7 @@
     <orderEntry type="library" name="Gradle: androidx.navigation:navigation-ui-ktx:2.5.3@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.navigation:navigation-ui:2.5.3@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.drawerlayout:drawerlayout:1.1.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.material:material:1.8.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.material:material:1.9.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.6.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat-resources:1.6.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.vectordrawable:vectordrawable:1.1.0@aar" level="project" />
@@ -330,9 +335,9 @@
     <orderEntry type="library" name="Gradle: androidx.recyclerview:recyclerview:1.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.transition:transition:1.4.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.viewpager2:viewpager2:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-auth:20.4.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-auth:20.5.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-auth-base:18.0.4@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-fido:19.0.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-fido:20.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-analytics-ktx:21.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-analytics:21.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-measurement:21.2.0@aar" level="project" />
@@ -356,9 +361,11 @@
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-database:20.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-storage-ktx:20.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-storage:20.1.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-ktx:2.6.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.media:media:1.6.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.preference:preference-ktx:1.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.preference:preference:1.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-ktx:2.6.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.media:media:1.6.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.swiperefreshlayout:swiperefreshlayout:1.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:glide:4.12.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:gifdecoder:4.12.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.exifinterface:exifinterface:1.2.0@aar" level="project" />

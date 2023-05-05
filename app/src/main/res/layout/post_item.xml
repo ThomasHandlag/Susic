@@ -67,8 +67,8 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/action_btn"
                 style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:contentDescription="@string/img_lb"
                 app:icon="@drawable/ic_round_settings_24"
@@ -130,24 +130,24 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/pause_btn"
                     style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:contentDescription="@string/img_lb"
                     app:icon="@drawable/ic_round_play_arrow_24" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/com.google.android.material.button.MaterialButton3"
                     style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:contentDescription="@string/img_lb"
                     app:icon="@drawable/ic_round_favorite_24" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/com_btn"
                     style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:contentDescription="@string/img_lb"
                     app:icon="@drawable/ic_round_comment_24"
                     app:layout_constraintEnd_toStartOf="@+id/com.google.android.material.button.MaterialButton"
@@ -156,8 +156,8 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/com.google.android.material.button.MaterialButton"
                     style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:contentDescription="@string/img_lb"
                     app:icon="@drawable/ic_round_share_24" />
 

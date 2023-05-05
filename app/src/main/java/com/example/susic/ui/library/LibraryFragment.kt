@@ -7,32 +7,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.example.susic.DetailFragment
 import com.example.susic.R
+import com.example.susic.StatusEnums
+import com.example.susic.SusicViewModel
+import com.example.susic.data.Artist
+import com.example.susic.data.Track
 import com.example.susic.databinding.FragmentLibraryBinding
+import com.example.susic.databinding.NotifyItemBinding
+import com.example.susic.databinding.PpItemBinding
+import com.example.susic.databinding.SongItemBinding
+import com.example.susic.ui.notify.Notification
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [LibraryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class LibraryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-    private lateinit var binding : FragmentLibraryBinding
-
+class LibraryFragment(
+    private val showPlayer: (track: Track) -> Unit,
+    private val showDetail: (fragment: Fragment) -> Unit
+) : Fragment() {
+    private lateinit var binding: FragmentLibraryBinding
+    private val viewModel: SusicViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+        with(viewModel) {
+            getArtists()
+            getTracks()
         }
-
     }
 
     override fun onCreateView(
@@ -40,27 +42,166 @@ class LibraryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_library, container, false)
+        val songAdapter = SongAdapter(showPlayer)
+        val artistAdapter = ArtistAdapter(showDetail, showPlayer)
+        with(binding) {
+            artRec.adapter = artistAdapter
+            songRec.adapter = songAdapter
+        }
+        viewModel.artists.observe(this.viewLifecycleOwner) {
+            artistAdapter.submitList(it)
+        }
+        viewModel.tracks.observe(this.viewLifecycleOwner) {
+            songAdapter.submitList(it)
+        }
+        viewModel.artistLoadState.observe(this.viewLifecycleOwner) {
+            when (it) {
+                StatusEnums.EMPTY -> {
+                    with(binding) {
+                        artRec.visibility = View.GONE
+                        empText.visibility = View.VISIBLE
+                        loadMorePrg.visibility = View.GONE
+                    }
+                }
+
+                StatusEnums.ERROR -> {
+                    with(binding) {
+                        artRec.visibility = View.GONE
+                        empText.visibility = View.VISIBLE
+                        empText.text = getText(R.string.load_metadata_error)
+                        loadMorePrg.visibility = View.GONE
+                    }
+                }
+
+                StatusEnums.LOADING -> {
+                    with(binding) {
+                        artRec.visibility = View.GONE
+                        empText.visibility = View.GONE
+                        loadMorePrg.visibility = View.VISIBLE
+                    }
+                }
+
+                else -> {
+                    with(binding) {
+                        artRec.visibility = View.VISIBLE
+                        empText.visibility = View.GONE
+                        loadMorePrg.visibility = View.GONE
+                    }
+                }
+            }
+        }
+        viewModel.trackLoadState.observe(this.viewLifecycleOwner) {
+            when (it) {
+                StatusEnums.EMPTY -> {
+                    with(binding) {
+                        songRec.visibility = View.GONE
+                        empText2.visibility = View.VISIBLE
+                        loadMorePrg2.visibility = View.GONE
+                    }
+                }
+
+                StatusEnums.ERROR -> {
+                    with(binding) {
+                        songRec.visibility = View.GONE
+                        empText2.visibility = View.VISIBLE
+                        empText2.text = getText(R.string.load_metadata_error)
+                        loadMorePrg2.visibility = View.GONE
+                    }
+                }
+
+                StatusEnums.LOADING -> {
+                    with(binding) {
+                        songRec.visibility = View.GONE
+                        empText2.visibility = View.GONE
+                        loadMorePrg2.visibility = View.VISIBLE
+                    }
+                }
+
+                else -> {
+                    with(binding) {
+                        songRec.visibility = View.VISIBLE
+                        empText2.visibility = View.GONE
+                        loadMorePrg2.visibility = View.GONE
+                    }
+                }
+            }
+        }
         // Inflate the layout for this fragment
         return binding.root
     }
+}
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LibraryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LibraryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+class ArtistAdapter(
+    private val showDetail: (fragment: Fragment) -> Unit,
+    private val showPlayer: (track: Track) -> Unit
+) : ListAdapter<Artist, ArtistHolder>(ArtistDiff()) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtistHolder {
+        return ArtistHolder(PpItemBinding.inflate(LayoutInflater.from(parent.context)))
+    }
+
+    override fun onBindViewHolder(holder: ArtistHolder, pos: Int) {
+        val art = getItem(pos)
+        holder.bind(art, showDetail, showPlayer)
     }
 }
+
+class ArtistHolder(private val binding: PpItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    fun bind(
+        art: Artist,
+        showDetail: (fragment: Fragment) -> Unit,
+        showPlayer: (track: Track) -> Unit
+    ) {
+        binding.data = art
+        binding.cart.setOnClickListener {
+            showDetail(DetailFragment(art, showPlayer))
+        }
+    }
+}
+
+class ArtistDiff : DiffUtil.ItemCallback<Artist>() {
+    override fun areItemsTheSame(oldItem: Artist, newItem: Artist): Boolean {
+        return oldItem == newItem
+    }
+
+    override fun areContentsTheSame(oldItem: Artist, newItem: Artist): Boolean {
+        return oldItem == newItem
+    }
+}
+
+class SongAdapter(private val showPlayer: (track: Track) -> Unit) :
+    ListAdapter<Track, SongHolder>(SongDiff()) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongHolder {
+        return SongHolder(
+            SongItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    override fun onBindViewHolder(holder: SongHolder, pos: Int) {
+        val song = getItem(pos)
+        holder.bind(song, showPlayer)
+    }
+}
+
+class SongHolder(private val binding: SongItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    fun bind(song: Track, showPlayer: (track: Track) -> Unit) {
+        binding.data = song
+        binding.container.setOnClickListener {
+            showPlayer(song)
+        }
+    }
+}
+
+class SongDiff : DiffUtil.ItemCallback<Track>() {
+    override fun areItemsTheSame(oldItem: Track, newItem: Track): Boolean {
+        return oldItem == newItem
+    }
+
+    override fun areContentsTheSame(oldItem: Track, newItem: Track): Boolean {
+        return oldItem == newItem
+    }
+}
+

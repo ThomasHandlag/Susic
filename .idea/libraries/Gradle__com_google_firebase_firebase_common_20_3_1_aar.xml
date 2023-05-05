@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.firebase:firebase-common:20.3.1@aar">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../../Program Files/.gradle/caches/transforms-3/fd96bd37c936b7a9894ef1ce51cd5924/transformed/firebase-common-20.3.1/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../../Program Files/.gradle/caches/transforms-3/fd96bd37c936b7a9894ef1ce51cd5924/transformed/firebase-common-20.3.1/res" />
-      <root url="file://$PROJECT_DIR$/../../../Program Files/.gradle/caches/transforms-3/fd96bd37c936b7a9894ef1ce51cd5924/transformed/firebase-common-20.3.1/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../../../Program Files/.gradle/caches/transforms-3/30e3ff5a4c21a28ffabf950bce905de9/transformed/firebase-common-20.3.1/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../../Program Files/.gradle/caches/transforms-3/30e3ff5a4c21a28ffabf950bce905de9/transformed/firebase-common-20.3.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../Program Files/.gradle/caches/transforms-3/30e3ff5a4c21a28ffabf950bce905de9/transformed/firebase-common-20.3.1/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../../../Program Files/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-common/20.3.1/8b3b63db24fb94c8f53cbd26ca3ff0d0c19f38ed/firebase-common-20.3.1-javadoc.jar!/" />

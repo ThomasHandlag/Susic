@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.susic.R
 import com.example.susic.StatusEnums
@@ -17,9 +18,7 @@ import com.example.susic.databinding.FragmentNotifyBinding
 class NotifyFragment : Fragment() {
     private lateinit var bind: FragmentNotifyBinding
 
-    private val viewModel: SusicViewModel by lazy {
-        ViewModelProvider(requireActivity())[SusicViewModel::class.java]
-    }
+    private val viewModel: SusicViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,17 +44,29 @@ class NotifyFragment : Fragment() {
                     StatusEnums.DONE -> {
                         recView.visibility = View.VISIBLE
                         img.visibility = View.GONE
-                        prgBar.visibility =View.GONE
+                        prgBar.visibility = View.GONE
+                        text.visibility = View.GONE
                     }
+
                     StatusEnums.LOADING -> {
                         recView.visibility = View.GONE
                         img.visibility = View.GONE
                         prgBar.visibility = View.VISIBLE
+                        text.visibility = View.GONE
                     }
+
+                    StatusEnums.EMPTY -> {
+                        recView.visibility = View.GONE
+                        img.visibility = View.GONE
+                        prgBar.visibility = View.GONE
+                        text.visibility = View.VISIBLE
+                    }
+
                     else -> {
                         recView.visibility = View.GONE
                         prgBar.visibility = View.GONE
                         img.visibility = View.VISIBLE
+                        text.visibility = View.GONE
                     }
                 }
             }
