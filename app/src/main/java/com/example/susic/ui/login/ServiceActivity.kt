@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.susic.MainActivity
 
 import com.example.susic.R
@@ -42,9 +44,8 @@ class ServiceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
-
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_service)
         supportActionBar?.hide()
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_service)
         binding.bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.sign_in -> switchFragment(LoginFragment())

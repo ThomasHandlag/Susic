@@ -21,6 +21,8 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import java.util.*
 import kotlin.random.Random
 
@@ -32,6 +34,7 @@ interface StateListener {
     fun onListenReplySuccess(rs: StatusEnums)
     fun onUpdateUserSuccess(rs: Boolean)
     fun onGetUsersPosts(rs: StatusEnums)
+    fun onSTrackState(rs: StatusEnums)
 }
 
 const val LOG_TAG = "AppData"
@@ -148,6 +151,7 @@ object DB {
                 "tag" to "rep",
                 "content" to cont,
                 "uid" to repId,
+                "oid" to Firebase.auth.uid.toString(),
                 "like" to 0,
                 "date" to Timestamp(Calendar.getInstance().time)
             )
@@ -190,44 +194,47 @@ object DB {
     @JvmStatic
     fun getReplies(id: String): List<Comments> {
         state.onListenReplySuccess(StatusEnums.LOADING)
+        Log.i(LOG_TAG, id)
         val l = mutableListOf<Comments>()
-        comRef.whereEqualTo("uid", id).get().addOnSuccessListener { rs ->
-            if (!rs.isEmpty) for (e in rs) {
-                var bol = false
-                likeRef.whereEqualTo("id", e.data["id"])
-                    .whereGreaterThanOrEqualTo("id", Firebase.auth.uid.toString()).get()
-                    .addOnSuccessListener {
-                        if (!it.isEmpty) {
-                            bol = true
-                        }
-                        userRef.whereEqualTo(
-                            "id",
-                            e.data["oid"].toString()
-                        ).get().addOnSuccessListener { it1 ->
-                            for (u in it1) {
-                                l.add(
-                                    Comments(
-                                        e.data["id"].toString(),
-                                        e.data["content"].toString(),
-                                        convertToDate(e.data["date"]),
-                                        e.data["tag"].toString(),
-                                        u.data["firstname"].toString() + " " + u.data["lastname"].toString(),
-                                        u.data["urlImg"].toString(),
-                                        e.data["like"].toString(),
-                                        bol
-                                    )
-                                )
+        comRef.whereEqualTo("uid", id).whereEqualTo("tag", "rep").get().addOnSuccessListener { rs ->
+            if (!rs.isEmpty) {
+                for (e in rs) {
+                    var liked = false
+                    likeRef.whereEqualTo("id", e.data["id"])
+                        .whereEqualTo("uid", Firebase.auth.uid.toString()).get()
+                        .addOnSuccessListener {
+                            if (!it.isEmpty) {
+                                liked = true
                             }
-                            state.onListenReplySuccess(StatusEnums.DONE)
-                            Log.i(LOG_TAG, l.toString() + "is this null")
+                            userRef.whereEqualTo(
+                                "id",
+                                e.data["oid"].toString()
+                            ).get().addOnSuccessListener { it1 ->
+                                for (u in it1) {
+                                    l.add(
+                                        Comments(
+                                            e.data["id"].toString(),
+                                            e.data["content"].toString(),
+                                            convertToDate(e.data["date"]),
+                                            e.data["tag"].toString(),
+                                            u.data["firstname"].toString() + " " + u.data["lastname"].toString(),
+                                            u.data["urlImg"].toString(),
+                                            e.data["like"].toString(),
+                                            liked
+                                        )
+                                    )
+                                }
+                                Log.i(LOG_TAG, l.toString())
+                                state.onListenReplySuccess(StatusEnums.DONE)
+                            }.addOnFailureListener { ex ->
+                                Log.i(LOG_TAG, ex.stackTraceToString())
+                                state.onListenReplySuccess(StatusEnums.ERROR)
+                            }
                         }.addOnFailureListener { ex ->
                             Log.i(LOG_TAG, ex.stackTraceToString())
-                            state.onListenReplySuccess(StatusEnums.ERROR)
                         }
-                    }.addOnFailureListener { ex ->
-                        Log.i(LOG_TAG, ex.stackTraceToString())
-                    }
-            }
+                }
+            } else state.onListenReplySuccess(StatusEnums.EMPTY)
         }.addOnFailureListener {
             Log.i(LOG_TAG, it.stackTraceToString())
         }
@@ -305,48 +312,50 @@ object DB {
         comRef.whereEqualTo("pid", key)
             .whereEqualTo("tag", "main").get()
             .addOnSuccessListener { rs ->
-                if (!rs.isEmpty) for (e in rs) {
-                    var bol = false
-                    likeRef.whereEqualTo("id", e.data["id"])
-                        .whereGreaterThanOrEqualTo("uid", Firebase.auth.uid.toString()).get()
-                        .addOnSuccessListener {
-                            if (!it.isEmpty) {
-                                bol = true
-                            }
-                            var i = 0
-                            comRef.whereEqualTo("uid", e.data["id"].toString()).get()
-                                .addOnSuccessListener { mh ->
-                                    if (!mh.isEmpty) {
-                                        i = mh.size()
-                                    }
-                                    userRef.whereEqualTo(
-                                        "id",
-                                        e.data["uid"].toString()
-                                    ).get().addOnSuccessListener { it1 ->
-                                        for (u in it1) {
-                                            commentsList.add(
-                                                Comments(
-                                                    e.data["id"].toString(),
-                                                    e.data["content"].toString(),
-                                                    convertToDate(e.data["date"]),
-                                                    e.data["tag"].toString(),
-                                                    u.data["firstname"].toString() + " " + u.data["lastname"].toString(),
-                                                    u.data["urlImg"].toString(),
-                                                    e.data["like"].toString(),
-                                                    bol,
-                                                    i
-                                                )
-                                            )
-                                        }
-                                        Log.i(LOG_TAG, commentsList.toString())
-                                        state.onCommentSuccess(StatusEnums.DONE)
-                                    }.addOnFailureListener { ex ->
-                                        Log.i(LOG_TAG, ex.stackTraceToString())
-                                        state.onCommentSuccess(StatusEnums.ERROR)
-                                    }
+                if (!rs.isEmpty) {
+                    for (e in rs) {
+                        var bol = false
+                        likeRef.whereEqualTo("id", e.data["id"])
+                            .whereGreaterThanOrEqualTo("uid", Firebase.auth.uid.toString()).get()
+                            .addOnSuccessListener {
+                                if (!it.isEmpty) {
+                                    bol = true
                                 }
-                        }
-                }
+                                var i = 0
+                                comRef.whereEqualTo("uid", e.data["id"].toString()).get()
+                                    .addOnSuccessListener { mh ->
+                                        if (!mh.isEmpty) {
+                                            i = mh.size()
+                                        }
+                                        userRef.whereEqualTo(
+                                            "id",
+                                            e.data["uid"].toString()
+                                        ).get().addOnSuccessListener { it1 ->
+                                            for (u in it1) {
+                                                commentsList.add(
+                                                    Comments(
+                                                        e.data["id"].toString(),
+                                                        e.data["content"].toString(),
+                                                        convertToDate(e.data["date"]),
+                                                        e.data["tag"].toString(),
+                                                        u.data["firstname"].toString() + " " + u.data["lastname"].toString(),
+                                                        u.data["urlImg"].toString(),
+                                                        e.data["like"].toString(),
+                                                        bol,
+                                                        i
+                                                    )
+                                                )
+                                            }
+                                            Log.i(LOG_TAG, commentsList.toString())
+                                            state.onCommentSuccess(StatusEnums.DONE)
+                                        }.addOnFailureListener { ex ->
+                                            Log.i(LOG_TAG, ex.stackTraceToString())
+                                            state.onCommentSuccess(StatusEnums.ERROR)
+                                        }
+                                    }
+                            }
+                    }
+                } else state.onCommentSuccess(StatusEnums.EMPTY)
             }.addOnFailureListener {
                 Log.i(LOG_TAG, it.stackTraceToString())
             }
@@ -781,7 +790,7 @@ object DB {
                     for (doc in rs) {
                         posts.add(initPost(initPostData(doc.data)))
                     }
-                     state.onGetUsersPosts(StatusEnums.DONE)
+                    state.onGetUsersPosts(StatusEnums.DONE)
                 } else state.onGetUsersPosts(StatusEnums.EMPTY)
 
             }.addOnFailureListener {
@@ -789,6 +798,64 @@ object DB {
             }
         return posts
     }
+
+    @JvmStatic
+    fun searchTrack(key: String): List<Track> {
+        state.onSTrackState(StatusEnums.LOADING)
+        val list = mutableListOf<Track>()
+        trackRef.whereGreaterThanOrEqualTo("name", key).get().addOnSuccessListener {
+            if (!it.isEmpty) {
+                for (e in it) {
+                    list.add(
+                        Track(
+                            id = e.data["id"].toString(),
+                            url = e.data["url"].toString(),
+                            name = e.data["name"].toString(),
+                            urlImage = e.data["urlImage"].toString(),
+                            uid = e.data["uid"].toString()
+                        )
+                    )
+                }
+            } else state.onSTrackState(StatusEnums.EMPTY)
+        }.addOnFailureListener {
+            state.onSTrackState(StatusEnums.ERROR)
+        }
+        return list
+    }
 }
+
+//
+//object SpotifyMusic {
+//    private const val BASE_URL = "https://spotify23.p.rapidapi.com/"
+//    private val client = OkHttpClient()
+//    private val searchType = listOf(
+//        "artists",
+//        "tracks",
+//    )
+//    private const val rapidKey = "e7c16d79a1mshabbf3a54c51c97dp1f28aejsn3447f27ebe90"
+//    private const val rapidHost = "spotify23.p.rapidapi.com"
+//    fun search(type: Int=0,key: String="", numberOfRs: Int = 10 ) {
+//        val typeValue = if (type == 1) "tracks" else "artists"
+//        val queryStr = "?q=$key&type=$typeValue&offset=0&limit=10&numberOfTopResults=$numberOfRs"
+//        val request = Request.Builder()
+//            .url("https://spotify23.p.rapidapi.com/search/$queryStr")
+//            .get()
+//            .addHeader("X-RapidAPI-Key", rapidKey)
+//            .addHeader("X-RapidAPI-Host", rapidHost)
+//            .build()
+//
+//        try {
+//            val response = client.newCall(request).execute()
+//            Log.i(LOG_TAG, response.toString())
+//        }
+//        catch(exception: Throwable) {
+//            Log.i(LOG_TAG, exception.stackTraceToString())
+//        }
+//
+//    }
+//
+//}
+
+
 
 

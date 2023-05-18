@@ -1,12 +1,10 @@
 <resources>
     <string name="app_name">Susic</string>
-    <string name="title_activity_service" translatable="false">ServiceActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password" translatable="true">Password</string>
     <string name="action_sign_in" translatable="true">Sign in</string>
     <string name="action_sign_in_short" translatable="true">Sign in</string>
     <string name="action_sign_up" translatable="true">Sign up</string>
-    <string name="welcome" translatable="true">"Welcome !"</string>
     <string name="invalid_username" translatable="true">Not a valid username</string>
     <string name="login_failed" translatable="true">Login failed</string>
     <string name="invalid_mail" translatable="true">Invalid email</string>
@@ -25,8 +23,6 @@
     </string>
     <string name="attachment_summary_off" translatable="false">Only download attachments when manually requested</string>
 
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-
     <string name="home_lb" translatable="true">Home</string>
     <string name="notify_lb" translatable="true">Notify</string>
     <string name="artist_lb" translatable="true">Artist</string>
@@ -34,8 +30,6 @@
     <string name="library_lb" translatable="true">Library</string>
 
     <string name="mail_prefix" translatable="false">/@gmail.com</string>
-    <string name="server_client_id" translatable="false">243887629767-8jr4tkvr94gurg5sc71irve5d5cregl4.apps.googleusercontent.com</string>
-    <string name="or_lb" translatable="true">or</string>
 
     <string name="comm_lb" translatable="true">Comments</string>
 
@@ -44,8 +38,6 @@
 
     <string name="theme_lb">Theme</string>
     <string name="name_lb">Name</string>
-    <string name="nick_name_lb" translatable="false">Nick name</string>
-    <string name="role_lb">Role</string>
     <string name="role_title" translatable="false">%s</string>
 
     <string name="light_lb">Light</string>
@@ -53,15 +45,12 @@
     <string name="prg_indicator" translatable="false">Progress Indicator</string>
     <string name="cho_the" translatable="true">Choose theme</string>
 
-    <string name="your_name_lb" translatable="true">Your name</string>
-    <string name="prof_lb" translatable="true">Profile</string>
     <string name="user_name" translatable="false">%s</string>
     <string name="sign_out_lb" translatable="true">Sign out</string>
     <string name="date_post" translatable="false">at %s</string>
 
     <string name="post_lb_hint">Write some thing here</string>
 
-    <string name="search_lb">Search</string>
     <string name="page_title" translatable="false">Page</string>
     <string name="upload_lb">Upload</string>
 
@@ -69,16 +58,12 @@
     <string name="owner_title" translatable="false">by twenty one pilots</string>
     <string name="searchbar_hint">Search</string>
 
-    <string name="notification_title" translatable="false">Susic</string>
-    <string name="notification_message" translatable="false">New notification from friend</string>
-    <string name="ticker_text">stop</string>
     <string name="upload_progress_lb">Uploading</string>
     <string name="block_lb">Block</string>
     <string name="save_lb">Save</string>
     <string name="write_new_post_lb">Write new post</string>
     <string name="cancel_lb">Cancel</string>
     <string name="load_metadata_error">Network error</string>
-    <string name="cancel_write">Cancel</string>
     <string name="recent_lb">Recent songs</string>
 
     <string name="prf_st_lb">Profile</string>
@@ -105,10 +90,9 @@
     <string name="gender_lb">Gender</string>
     <string name="fn_lb">First name</string>
     <string name="ln_lb">Last name</string>
-    <string name="channel_name" translatable="false">Susic Player</string>
-    <string name="channel_des" translatable="false">Player</string>
     <string name="friend_lb">Friends</string>
     <string name="empty_lb">Nothing to show</string>
     <string name="nof_user_update">Changes saved</string>
-    <string name="failed_upload">Changes can\'t saved</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -16,7 +16,6 @@
         android:icon="@drawable/ic_round_notifications_24"
         android:title="@string/notify_lb" />
     <item
-        android:id="@+id/artist_page"
         android:enabled="true"
         android:icon="@drawable/ic_round_subscriptions_24"
         android:title="@string/friend_lb" />

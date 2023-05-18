@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
@@ -79,18 +80,24 @@ class CommentSheet :
                 StatusEnums.LOADING -> {
                     commentSheet.imageView2.visibility = View.VISIBLE
                     commentSheet.container.visibility = View.GONE
+                    commentSheet.empText.visibility = View.GONE
                 }
 
                 StatusEnums.DONE -> {
                     commentSheet.imageView2.visibility = View.GONE
                     commentSheet.container.visibility = View.VISIBLE
+                    commentSheet.empText.visibility = View.GONE
+                }
+
+                StatusEnums.EMPTY -> {
+                    commentSheet.imageView2.visibility = View.GONE
+                    commentSheet.container.visibility = View.GONE
+                    commentSheet.empText.visibility = View.VISIBLE
                 }
 
                 else -> {
-                    with(commentSheet.imageView2) {
-                        visibility = View.VISIBLE
-//                        setImageResource(R.drawable.ic_round_signal_wifi_off_24)
-                    }
+                    commentSheet.empText.visibility = View.VISIBLE
+                    commentSheet.imageView2.visibility = View.GONE
                     commentSheet.container.visibility = View.GONE
                 }
             }
@@ -116,7 +123,7 @@ class CommentAdapter(
     private val like: (id: String, like: String) -> Unit,
     private val writeComment: (id: String, name: String) -> Unit,
     private val context: Context?,
-    private val showRep: (it: Comments) -> Unit
+    private val showRep: (it: Comments) -> Unit,
 ) : ListAdapter<Comments, CommentViewHolder>(CommentDiff()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
         return CommentViewHolder(CommentItemBinding.inflate(LayoutInflater.from(parent.context)))
@@ -138,9 +145,11 @@ class CommentViewHolder(private val binding: CommentItemBinding) :
         showRep: (it: Comments) -> Unit
     ) {
         binding.comment = comment
-        if (comment.tag == "rep" || comment.repCount == 0) {
-            binding.openRepBtn.visibility = View.INVISIBLE
-        } else binding.openRepBtn.text =
+        if (comment.tag == "rep") {
+            binding.writeComBtn.visibility = View.INVISIBLE
+        }
+        if (comment.repCount == 0) binding.openRepBtn.visibility = View.INVISIBLE
+        else binding.openRepBtn.text =
             context?.getString(R.string.num_rep, comment.repCount.toString())
         binding.openRepBtn.setOnClickListener {
             showRep(comment)
@@ -162,6 +171,17 @@ class CommentViewHolder(private val binding: CommentItemBinding) :
         } else {
             binding.likeBtn.setIconResource(R.drawable.ic_outline_thumb_up_24)
             binding.likeBtn.isClickable = true
+        }
+        binding.comActionBtn.setOnClickListener {
+            val popupMenu = PopupMenu(context, binding.comActionBtn)
+            popupMenu.menuInflater.inflate(R.menu.action_menu, popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener {
+                when (it.itemId) {
+                    1 -> TODO("implement block post action")
+                    else -> TODO("implement save post action")
+                }
+            }
+            popupMenu.show()
         }
     }
 }
@@ -205,18 +225,24 @@ class ReplySheet : BottomSheetDialogFragment() {
                 StatusEnums.LOADING -> {
                     bind.imageView2.visibility = View.VISIBLE
                     bind.rec.visibility = View.GONE
+                    bind.empText.visibility = View.GONE
                 }
 
                 StatusEnums.DONE -> {
                     bind.imageView2.visibility = View.GONE
                     bind.rec.visibility = View.VISIBLE
+                    bind.empText.visibility = View.GONE
+                }
+
+                StatusEnums.EMPTY -> {
+                    bind.imageView2.visibility = View.GONE
+                    bind.rec.visibility = View.GONE
+                    bind.empText.visibility = View.VISIBLE
                 }
 
                 else -> {
-                    with(bind.imageView2) {
-                        visibility = View.VISIBLE
-//                        setImageResource(R.drawable.ic_round_signal_wifi_off_24)
-                    }
+                    bind.imageView2.visibility = View.GONE
+                    bind.empText.visibility = View.VISIBLE
                     bind.rec.visibility = View.GONE
                 }
             }

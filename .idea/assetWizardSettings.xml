@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$PROJECT_DIR$/../../../Android_SDK/icons/material/materialiconsround/close/round_close_24.xml" />
+                                      <entry key="url" value="file:/$PROJECT_DIR$/../../../Android_SDK/icons/material/materialiconsround/more_vert/round_more_vert_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,7 +28,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="round_close_24" />
+                            <entry key="outputName" value="round_more_vert_24" />
                             <entry key="sourceFile" value="D:\Documents\GitHub\Susic" />
                           </map>
                         </option>

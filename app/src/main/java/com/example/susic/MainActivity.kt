@@ -1,31 +1,36 @@
 package com.example.susic
 
-import android.Manifest
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
+import android.os.StrictMode
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import android.widget.SearchView
 import androidx.activity.viewModels
-import androidx.core.app.ActivityCompat
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.appcompat.widget.AppCompatDrawableManager
+import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.media.app.NotificationCompat.MediaStyle
-import com.example.susic.data.Artist
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.onNavDestinationSelected
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.susic.data.Track
 import com.example.susic.data.User
 import com.example.susic.databinding.ActivityMainBinding
@@ -52,8 +57,13 @@ class MainActivity : AppCompatActivity() {
     private var sBound = false
     private lateinit var mBindingIntent: Intent
     private lateinit var mPlayerControlsPanelBinding: PlayerFloatBinding
+    private lateinit var navController: NavController
+    private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var drawerLayout: DrawerLayout
     private val viewModel: SusicViewModel by viewModels()
-
+    private val showDetail: (fragment: Fragment) -> Unit = { fr ->
+        switchFragment(fr)
+    }
     private val aShowPlayer: (track: Track) -> Unit = {
         with(binding) {
             player.visibility = View.VISIBLE
@@ -98,8 +108,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val strictMode = StrictMode.ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(strictMode)
+        binding = DataBindingUtil.setContentView(this@MainActivity, R.layout.activity_main)
+        setSupportActionBar(binding.topAppBar)
+        drawerLayout = binding.drawerLayout
         if (Firebase.auth.currentUser != null) {
-            binding = DataBindingUtil.setContentView(this@MainActivity, R.layout.activity_main)
             val intent = Intent(this, PlayerService::class.java)
             val sheet = WritePostSheet()
             DB.listenChangedToNotify()
@@ -110,9 +124,6 @@ class MainActivity : AppCompatActivity() {
             val viewDetail: (fragment: Fragment, user: User) -> Unit = { it, u ->
                 viewModel.setCurrentViewedUser(u)
                 switchFragment(fragment = it)
-            }
-            val showDetail: (fragment: Fragment) -> Unit = { fr ->
-                switchFragment(fr)
             }
 
             viewModel.iGetCurrentUser()
@@ -132,13 +143,12 @@ class MainActivity : AppCompatActivity() {
                         viewModel.getViewUsers()
                         switchFragment(ArtistFragment(viewDetail))
                     }
-
                 }
             }
-            val drawerLayout = binding.drawerLayout
             binding.topAppBar.setNavigationOnClickListener {
                 drawerLayout.open()
             }
+
             binding.navigationView.setNavigationItemSelectedListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.wp_btn -> {
@@ -148,29 +158,30 @@ class MainActivity : AppCompatActivity() {
                         true
                     }
 
-                    R.id.prf_btn -> {
-                        switchFragment(ProfileFragment())
-                        binding.bottomNavigationView.clearFocus()
-                        menuItem.isChecked = true
-                        drawerLayout.close()
-                        true
-                    }
-
                     R.id.sl_btn -> {
                         menuItem.isChecked = true
                         drawerLayout.close()
                         true
                     }
-                    R.id.view_prf_btn -> {
-                        switchFragment(UserProfileFragment())
+
+                    R.id.settingFragment -> {
+                        switchFragment(SettingsFragment())
                         menuItem.isChecked = true
                         drawerLayout.close()
                         true
                     }
-                    R.id.st_btn -> {
+
+                    R.id.profileFragment -> {
+                        switchFragment(ProfileFragment())
                         menuItem.isChecked = true
                         drawerLayout.close()
-                        switchFragment(SettingsFragment())
+                        true
+                    }
+
+                    R.id.view_prf_btn -> {
+                        switchFragment(Search(aShowPlayer))
+                        menuItem.isChecked = true
+                        drawerLayout.close()
                         true
                     }
 
@@ -227,6 +238,34 @@ class MainActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragmentContainerView, fragment)
         transaction.commit()
+        return true
+    }
+
+    override fun onNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.top_app_bar, menu)
+        val itemMenu = menu.findItem(R.id.search)
+        val searchView: SearchView = itemMenu?.actionView as SearchView
+        searchView.queryHint = getString(R.string.searchbar_hint)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(str: String?): Boolean {
+                return if (str != null) {
+                    viewModel.search(str)
+                    true
+                } else false
+            }
+
+            override fun onQueryTextChange(str: String?): Boolean {
+                return if (str != null) {
+                    viewModel.setSearchKey(str)
+                    true
+                } else false
+            }
+
+        })
         return true
     }
 

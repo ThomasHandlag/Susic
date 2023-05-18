@@ -1,4 +1,4 @@
-package com.example.susic
+ package com.example.susic
 
 import android.net.Uri
 import android.util.Log
@@ -14,14 +14,16 @@ import com.example.susic.data.Track
 import com.example.susic.data.User
 import com.example.susic.network.DB
 import com.example.susic.network.LOG_TAG
+//import com.example.susic.network.SpotifyMusic
 import com.example.susic.network.StateListener
 import com.example.susic.ui.notify.Notification
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
 import java.util.Objects
+import javax.net.ssl.SSLEngineResult.Status
 
-class SusicViewModel : ViewModel() {
+ class SusicViewModel : ViewModel() {
 
     private var _posts = MutableLiveData<List<Post>>()
     val posts: LiveData<List<Post>>
@@ -38,6 +40,9 @@ class SusicViewModel : ViewModel() {
     private val _comments = MutableLiveData<List<Comments>>()
     val comments: LiveData<List<Comments>>
         get() = _comments
+
+    private val _sTracks = MutableLiveData<List<Track>>()
+    val sTrack: LiveData<List<Track>> get() = _tracks
 
     private val _replies = MutableLiveData<List<Comments>>()
     val replies: LiveData<List<Comments>>
@@ -161,6 +166,22 @@ class SusicViewModel : ViewModel() {
         override fun onGetUsersPosts(rs: StatusEnums) {
             listProfState.value = rs
         }
+        override fun onSTrackState(rs: StatusEnums) {
+            sTrackState.value = rs
+        }
+    }
+    private val _searchKey = MutableLiveData("")
+    private val _type = MutableLiveData(0)
+    fun setSearchKey(key: String) {
+        _searchKey.value = key
+    }
+    fun setSearchType(type: Int) {
+        _type.value= type
+    }
+    val sTrackState = MutableLiveData<StatusEnums>()
+    fun search(key: String) {
+        _sTracks.value = DB.searchTrack(key)
+//        _type.value?.let { SpotifyMusic.search(it, key,10) }
     }
     val listProfState = MutableLiveData<StatusEnums>()
     val listProf = MutableLiveData<List<Post>>()

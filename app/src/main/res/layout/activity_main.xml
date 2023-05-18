@@ -16,7 +16,6 @@
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:expanded="false"
                 app:liftOnScroll="true">
 
                 <com.google.android.material.appbar.MaterialToolbar
@@ -25,22 +24,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:contentScrim="?attr/colorPrimary"
+                    app:layout_scrollFlags="scroll|enterAlways|snap"
+                    app:menu="@menu/top_app_bar"
                     app:navigationIcon="@drawable/ic_baseline_menu_24"
-                    app:statusBarScrim="?attr/colorPrimaryVariant"
-                    app:title="@string/page_title">
-
-                    <com.google.android.material.search.SearchBar
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:hint="@string/searchbar_hint"
-                        app:collapseIcon="@drawable/ic_round_search_24" />
-                </com.google.android.material.appbar.MaterialToolbar>
+                    app:statusBarScrim="?attr/colorPrimaryVariant" />
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="?attr/actionBarSize">
+                android:layout_marginBottom="?attr/actionBarSize"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/fragmentContainerView"
@@ -48,98 +42,99 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     app:defaultNavHost="true"
-                    app:layout_constraintBottom_toTopOf="@id/bottomNavigationContainer"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:navGraph="@navigation/navigation" />
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/bottomNavigationContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent">
+
                 <LinearLayout
-                    android:id="@+id/bottomNavigationContainer"
+                    android:id="@+id/player"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#1BC3F6"
                     android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent">
+                    android:visibility="gone">
+
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/prg_indicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
                     <LinearLayout
-                        android:id="@+id/player"
-                        style="@style/ModalBottomSheetDialog"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        android:orientation="vertical"
-                        >
+                        android:layout_height="wrap_content">
 
-                        <com.google.android.material.progressindicator.LinearProgressIndicator
-                            android:id="@+id/prg_indicator"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/close_action_btn"
+                            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:contentDescription="@string/img_lb"
+                            app:icon="@drawable/ic_round_expand_less_24" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="start"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/track_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:marqueeRepeatLimit="marquee_forever"
+                                android:text="@string/player_title" />
+
+                            <TextView
+                                android:id="@+id/owner_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:marqueeRepeatLimit="marquee_forever"
+                                android:text="@string/owner_title" />
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:id="@+id/img_thumb"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:contentDescription="@string/img_lb"
+                                android:src="@drawable/ic_launcher"
+                                app:shapeAppearanceOverlay="@style/RoundButton"
+                                tools:src="@drawable/ic_launcher" />
 
                             <com.google.android.material.button.MaterialButton
-                                android:id="@+id/close_action_btn"
+                                android:id="@+id/pause_btn"
                                 style="@style/Widget.App.Button.OutlinedButton.IconOnly"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:contentDescription="@string/img_lb"
-                                app:icon="@drawable/ic_round_expand_less_24" />
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="start"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/track_title"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:marqueeRepeatLimit="marquee_forever"
-                                    android:text="@string/player_title" />
-
-                                <TextView
-                                    android:id="@+id/owner_title"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:marqueeRepeatLimit="marquee_forever"
-                                    android:text="@string/owner_title" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="end"
-                                android:orientation="horizontal">
-
-                                <com.google.android.material.imageview.ShapeableImageView
-                                    android:id="@+id/img_thumb"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    android:contentDescription="@string/img_lb"
-                                    android:src="@drawable/ic_launcher"
-                                    app:shapeAppearanceOverlay="@style/RoundButton"
-                                    tools:src="@drawable/ic_launcher" />
-
-                                <com.google.android.material.button.MaterialButton
-                                    android:id="@+id/pause_btn"
-                                    style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-                                    android:layout_width="48dp"
-                                    android:layout_height="48dp"
-                                    android:contentDescription="@string/img_lb"
-                                    app:icon="@drawable/ic_round_play_arrow_24" />
-                            </LinearLayout>
+                                app:icon="@drawable/ic_round_play_arrow_24" />
                         </LinearLayout>
                     </LinearLayout>
-
-                    <com.google.android.material.bottomnavigation.BottomNavigationView
-                        android:id="@+id/bottomNavigationView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:menu="@menu/nav_item_menu" />
                 </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottomNavigationView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:menu="@menu/nav_item_menu" />
+            </LinearLayout>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <com.google.android.material.navigation.NavigationView
@@ -147,6 +142,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            app:menu="@menu/top_app_bar" />
+            app:menu="@menu/nav_drawer_menu" />
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

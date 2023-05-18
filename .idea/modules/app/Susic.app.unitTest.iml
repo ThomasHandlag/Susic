@@ -105,6 +105,8 @@
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/f9a411f142c8e29f26c668fa6cf428fc/transformed/lifecycle-livedata-ktx-2.6.1-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/644100a4c67a918dca46b44227f0fa7e/transformed/lifecycle-viewmodel-ktx-2.6.1-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-android/1.6.4/f955fc8b2ad196e2f4429598440e15f7492eeb2b/kotlinx-coroutines-android-1.6.4.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/4.10.0/cd63657ac15770ed1420647154c9f44645533bef/okhttp-4.10.0.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio-jvm/3.0.0/ab5a73fa2ccb4a36b0b5c69fe10b16d0255bcf8/okio-jvm-3.0.0.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.8.10/7c002ac41f547a82e81dfebd2a20577a738dbf3f/kotlin-stdlib-jdk8-1.8.10.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/71a04e4b8d8779352d8cdb50757ef0ad/transformed/constraintlayout-2.1.4-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../../Program Files/.gradle/caches/transforms-3/b727bd2da4e61db31e35517d4996dfed/transformed/viewbinding-8.0.1-api.jar</arg>
@@ -259,6 +261,8 @@
     <orderEntry type="library" scope="TEST" name="Gradle: io.grpc:grpc-core:1.52.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.github.bumptech.glide:disklrucache:4.12.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.github.bumptech.glide:annotations:4.12.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.okhttp3:okhttp:4.10.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.okio:okio-jvm:3.0.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.13.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.databinding:databinding-runtime:8.0.1@aar" level="project" />
