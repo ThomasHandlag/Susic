@@ -1,25 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="ModalBottomSheetDialog" parent="Widget.MaterialComponents.BottomSheet">
-        <item name="elevation">
-            0dp
-        </item>
-    </style>
-
-    <style name="RoundButton">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%</item>
-    </style>
-
-    <style name="Widget.App.Button.OutlinedButton.IconOnly" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="iconPadding">0dp</item>
-        <item name="android:insetTop">0dp</item>
-        <item name="android:insetBottom">0dp</item>
-        <item name="android:paddingLeft">12dp</item>
-        <item name="android:paddingRight">12dp</item>
-        <item name="android:minWidth">40dp</item>
-        <item name="android:minHeight">40dp</item>
-    </style>
-
 </resources>

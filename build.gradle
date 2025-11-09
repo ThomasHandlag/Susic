@@ -5,16 +5,18 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.google.gms:google-services:4.3.15'
+        classpath 'com.google.gms:google-services:4.4.4'
     }
 }
 plugins {
-    id 'com.android.application' version '8.0.1' apply false
-    id 'com.android.library' version '8.0.1' apply false
-    id 'org.jetbrains.kotlin.android' version '1.8.10' apply false
-    id 'org.jetbrains.kotlin.kapt' version '1.8.10'
+    id 'com.android.application' version '8.13.0' apply false
+    id 'com.android.library' version '8.13.0' apply false
+    id 'org.jetbrains.kotlin.android' version '2.2.21' apply false
+    id 'org.jetbrains.kotlin.kapt' version '2.2.21'
+    id 'org.jetbrains.kotlin.plugin.compose' version '2.2.21' apply false
+    // Add the version and apply false
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+tasks.register('clean', Delete) {
+    delete rootProject.layout.buildDirectory
 }
