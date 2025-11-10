@@ -133,10 +133,15 @@ Run → Run 'app' (Shift+F10)
 
 ## 📱 Screenshots
 
-![Alt text](./showcase/Screenshot_1.png)
-![Alt text](./showcase/Screenshot_2.png)
-![Alt text](./showcase/Screenshot_3.png)
-![Alt text](./showcase/Screenshot_4.png)
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="./showcase/Screenshot_1.png" alt="Screenshot 1" width="25%"/>
+  <img src="./showcase/Screenshot_2.png" alt="Screenshot 2" width="25%"/>
+  <img src="./showcase/Screenshot_3.png" alt="Screenshot 3" width="25%"/>
+</div>
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="./showcase/Screenshot_4.png" alt="Screenshot 4" width="25%"/>
+  <img src="./showcase/Screenshot_5.png" alt="Screenshot 5" width="25%"/>
+</div>
 
 ---
 ## 🔐 Permissions
