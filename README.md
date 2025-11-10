@@ -12,6 +12,10 @@ A modern, feature-rich offline music player for Android built with Jetpack Compo
 
 [Features](#-features) • [Architecture](#-architecture) • [Getting Started](#-getting-started) • [Screenshots](#-screenshots) • [Documentation](#-documentation)
 
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="./app/src/main/ic_launcher-playstore.png" alt="app logo" width="25%"/>
+</div>
+
 </div>
 
 ---
