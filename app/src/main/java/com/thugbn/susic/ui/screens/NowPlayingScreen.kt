@@ -110,110 +110,113 @@ fun NowPlayingScreen(
                     val isCurrentSong = currentQueue.indexOf(song) == currentIndex
                     SongItem(
                         song = song, onClick = {
-                        musicPlayerViewModel.playSongs(currentQueue, currentQueue.indexOf(song))
-                    }, onFavoriteClick = {
-                        musicPlayerViewModel.toggleFavorite(song.id, song.isFavorite)
-                    }, onMoreClick = { }, modifier = Modifier.background(
-                        if (isCurrentSong) MaterialTheme.colorScheme.surfaceVariant else MaterialTheme.colorScheme.surface
-                    )
+                            musicPlayerViewModel.playSongs(currentQueue, currentQueue.indexOf(song))
+                        }, onFavoriteClick = {
+                            musicPlayerViewModel.toggleFavorite(song.id, song.isFavorite)
+                        }, onMoreClick = { }, modifier = Modifier.background(
+                            if (isCurrentSong) MaterialTheme.colorScheme.surfaceVariant else MaterialTheme.colorScheme.surface
+                        )
                     )
                 }
             }
         } else {
             // Show Now Playing UI
-            Column(
+            LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
                     .padding(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Spacer(modifier = Modifier.weight(1f))
-
                 // Tab Row for Album Art / Visualizer
-                HorizontalPager(
-                    state = pagerState
-                ) { page ->
-                    if (page == 0) {
-                        AsyncImage(
-                            model = currentSong?.albumArtUri,
-                            contentDescription = "Album art",
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .aspectRatio(1f)
-                                .clip(RoundedCornerShape(16.dp))
-                                .background(randomGradient()),
-                            contentScale = ContentScale.Crop,
-                        )
-                    } else {
-                        Card(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .aspectRatio(1f),
-                            colors = CardDefaults.cardColors(
-                                containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+                item {
+                    HorizontalPager(
+                        state = pagerState
+                    ) { page ->
+                        if (page == 0) {
+                            AsyncImage(
+                                model = currentSong?.albumArtUri,
+                                contentDescription = "Album art",
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .aspectRatio(1f)
+                                    .clip(RoundedCornerShape(16.dp))
+                                    .background(randomGradient()),
+                                contentScale = ContentScale.Crop,
                             )
-                        ) {
-                            Box(modifier = Modifier.fillMaxSize()) {
-                                AudioVisualizer(
-                                    waveform = waveform,
-                                    fft = fft,
-                                    visualizerType = visualizerType,
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .padding(8.dp),
-                                    color = MaterialTheme.colorScheme.primary,
-                                    accentColor = MaterialTheme.colorScheme.secondary
-                                )
-                                IconButton(
-                                    onClick = {
-                                        val types = VisualizerType.entries
-                                        val currentIndex = types.indexOf(visualizerType)
-                                        val newType = types[(currentIndex + 1) % types.size]
-                                        visualizerType = newType
-                                        musicPlayerViewModel.setVisualizerType(newType.ordinal)
-                                    }, modifier = Modifier
-                                        .align(Alignment.BottomEnd)
-                                        .padding(8.dp)
-                                ) {
-                                    Icon(
-                                        imageVector = Icons.Filled.Autorenew,
-                                        contentDescription = "Change visualizer type",
-                                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                        } else {
+                            Card(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .aspectRatio(1f),
+                                colors = CardDefaults.cardColors(
+                                    containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(
+                                        alpha = 0.5f
                                     )
+                                )
+                            ) {
+                                Box(modifier = Modifier.fillMaxSize()) {
+                                    AudioVisualizer(
+                                        waveform = waveform,
+                                        fft = fft,
+                                        visualizerType = visualizerType,
+                                        modifier = Modifier
+                                            .fillMaxSize()
+                                            .padding(8.dp),
+                                        color = MaterialTheme.colorScheme.primary,
+                                        accentColor = MaterialTheme.colorScheme.secondary
+                                    )
+                                    IconButton(
+                                        onClick = {
+                                            val types = VisualizerType.entries
+                                            val currentIndex = types.indexOf(visualizerType)
+                                            val newType = types[(currentIndex + 1) % types.size]
+                                            visualizerType = newType
+                                            musicPlayerViewModel.setVisualizerType(newType.ordinal)
+                                        }, modifier = Modifier
+                                            .align(Alignment.BottomEnd)
+                                            .padding(8.dp)
+                                    ) {
+                                        Icon(
+                                            imageVector = Icons.Filled.Autorenew,
+                                            contentDescription = "Change visualizer type",
+                                            tint = MaterialTheme.colorScheme.onSurfaceVariant
+                                        )
+                                    }
                                 }
                             }
                         }
+
                     }
-
                 }
-                Spacer(modifier = Modifier.height(32.dp))
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = currentSong?.title ?: "No song playing",
-                        style = MaterialTheme.typography.headlineMedium
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(
-                        text = currentSong?.artist ?: "",
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
+                item {
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            text = currentSong?.title ?: "No song playing",
+                            style = MaterialTheme.typography.headlineMedium
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = currentSong?.artist ?: "",
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
                 }
-                // Player Controls
-                PlayerControls(
-                    playbackState = playbackState,
-                    onPlayPauseClick = { musicPlayerViewModel.playPause() },
-                    onNextClick = { musicPlayerViewModel.seekToNext() },
-                    onPreviousClick = { musicPlayerViewModel.seekToPrevious() },
-                    onShuffleClick = { musicPlayerViewModel.toggleShuffle() },
-                    onRepeatClick = { musicPlayerViewModel.cycleRepeatMode() },
-                    onSeek = { position -> musicPlayerViewModel.seekTo(position) })
-
-                Spacer(modifier = Modifier.weight(1f))
+                item {
+                    // Player Controls
+                    PlayerControls(
+                        playbackState = playbackState,
+                        onPlayPauseClick = { musicPlayerViewModel.playPause() },
+                        onNextClick = { musicPlayerViewModel.seekToNext() },
+                        onPreviousClick = { musicPlayerViewModel.seekToPrevious() },
+                        onShuffleClick = { musicPlayerViewModel.toggleShuffle() },
+                        onRepeatClick = { musicPlayerViewModel.cycleRepeatMode() },
+                        onSeek = { position -> musicPlayerViewModel.seekTo(position) })
+                }
             }
 
             // Sleep Timer Dialog

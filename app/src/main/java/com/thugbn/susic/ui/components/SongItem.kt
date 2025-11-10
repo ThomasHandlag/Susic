@@ -17,6 +17,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.thugbn.susic.data.model.Song
+import com.thugbn.susic.ui.screens.randomGradient
 
 /**
  * Reusable song item component
@@ -43,7 +44,7 @@ fun SongItem(
             modifier = Modifier
                 .size(56.dp)
                 .clip(RoundedCornerShape(8.dp))
-                .background(MaterialTheme.colorScheme.surfaceVariant),
+                .background(randomGradient()),
             contentScale = ContentScale.Crop
         )
 

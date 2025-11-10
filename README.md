@@ -6,6 +6,7 @@
 ![Kotlin](https://img.shields.io/badge/Kotlin-1.9+-blue.svg)
 ![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-1.5+-brightgreen.svg)
 ![Material 3](https://img.shields.io/badge/Material%203-Latest-orange.svg)
+![GitHub top language](https://img.shields.io/github/languages/top/ThomasHandlag/susic)
 
 A modern, feature-rich offline music player for Android built with Jetpack Compose and Material 3 design.
 
@@ -132,47 +133,12 @@ Run → Run 'app' (Shift+F10)
 
 ## 📱 Screenshots
 
-> Coming soon...
+![Alt text](./showcase/Screenshot_1.png)
+![Alt text](./showcase/Screenshot_2.png)
+![Alt text](./showcase/Screenshot_3.png)
+![Alt text](./showcase/Screenshot_4.png)
 
 ---
-
-## 🎯 Project Structure
-
-```
-app/src/main/java/com/thugbn/susic/
-├── SusicApplication.kt          # Application class
-├── MainActivity.kt               # Main entry point
-├── data/                        # Data layer
-│   ├── local/                   # Room database
-│   ├── model/                   # Data models
-│   ├── preferences/             # DataStore
-│   └── repository/              # Repository pattern
-├── service/                     # Background services
-│   ├── MusicPlaybackService.kt  # Foreground service
-│   ├── MusicPlayerController.kt # Playback control
-│   └── SleepTimerWorker.kt      # Timer worker
-├── ui/                          # Presentation layer
-│   ├── components/              # Reusable UI
-│   ├── screens/                 # App screens
-│   ├── viewmodel/               # ViewModels
-│   └── theme/                   # Material theme
-└── navigation/                  # Navigation setup
-```
-
----
-
-## 📚 Documentation
-
-Detailed documentation available in project root:
-
-- **[PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md)** - Complete architecture guide
-- **[ARCHITECTURE_DIAGRAM.md](ARCHITECTURE_DIAGRAM.md)** - Visual diagrams
-- **[SETUP_COMPLETE.md](SETUP_COMPLETE.md)** - Setup instructions
-- **[CHECKLIST.md](CHECKLIST.md)** - Feature checklist
-- **[FINAL_STATUS.md](FINAL_STATUS.md)** - Current status
-
----
-
 ## 🔐 Permissions
 
 The app requires the following permissions:
@@ -200,17 +166,6 @@ All permissions are requested at runtime with proper rationale.
 # Run tests
 ./gradlew test
 ```
-
-### Key Classes
-
-- **MusicPlaybackService** - Handles audio playback via Media3
-- **MusicPlayerViewModel** - Manages playback state
-- **MusicDatabase** - Room database for local storage
-- **SongRepository** - Data operations for songs
-- **SleepTimerManager** - Timer scheduling logic
-
----
-
 ## 🧪 Testing
 
 ```bash
